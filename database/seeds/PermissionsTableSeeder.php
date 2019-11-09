@@ -23,6 +23,11 @@ class PermissionsTableSeeder extends Seeder
             [ 'name' => 'create roles' ],
             [ 'name' => 'edit roles' ],
             [ 'name' => 'delete roles' ],
+
+            [ 'name' => 'list areas' ],
+            [ 'name' => 'create areas' ],
+            [ 'name' => 'edit areas' ],
+            [ 'name' => 'delete areas' ],
         ];
 
         $admin = Role::find(1);

@@ -58,6 +58,14 @@
             </li>
 
             <li class="treeview">
+                <a href="#"><i class='fa fa-lock'></i> <span>Areas</span><i class="fa fa-angle-left pull-right"></i></a>
+                <ul class="treeview-menu">
+                    <li><a href="{{ route('admin.areas.index') }}">Lista de areas</a></li>
+                    <li><a href="{{ route('admin.areas.create') }}">Crear area</a></li>
+                </ul>
+            </li>
+
+            <li class="treeview">
                 <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
                 <ul class="treeview-menu">
                     <li><a href="#">Link in level 2</a></li>

@@ -159,5 +159,34 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', '
         'uses' => 'PostulantController@destroy',
     ]);
 
+    //-------------- AREAS ------------------//
+    Route::get('areas', [
+        'as' => 'areas.index',
+        'uses' => 'AreaController@index',
+    ])->middleware('permission:list areas');
+    Route::get('areas/create', [
+        'as' => 'areas.create',
+        'uses' => 'AreaController@create',
+    ])->middleware('permission:create areas');
+    Route::post('areas/store', [
+        'as' => 'areas.store',
+        'uses' => 'AreaController@store',
+    ])->middleware('permission:create areas');
+    Route::get('areas/{area}/edit', [
+        'as' => 'areas.edit',
+        'uses' => 'AreaController@edit',
+    ])->middleware('permission:edit areas');
+    Route::put('areas/{area}', [
+        'as' => 'areas.update',
+        'uses' => 'AreaController@update',
+    ])->middleware('permission:edit areas');
+    Route::patch('areas/{area}', [
+        'as' => 'areas.update',
+        'uses' => 'AreaController@update',
+    ])->middleware('permission:edit areas');
+    Route::delete('areas/{area}', [
+        'as' => 'areas.destroy',
+        'uses' => 'AreaController@destroy',
+    ])->middleware('permission:delete areas');
 
 });
