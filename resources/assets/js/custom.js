@@ -36,10 +36,6 @@ window.notification = (type, message) => {
     }
 }
 
-$(document).ready(function() {
-    $('.js-example-basic-multiple').select2();
-});
-
 module.exports = delete_action = (e) => {
     e.preventDefault();
 

@@ -15,4 +15,11 @@ class Area extends Model
         'name', 'slug', 'description',
     ];
 
+    /**
+     * Get the comments for the blog post.
+     */
+    public function announcements()
+    {
+        return $this->belongsToMany('App\Announcement');
+    }
 }

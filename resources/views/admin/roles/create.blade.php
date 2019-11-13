@@ -9,6 +9,7 @@
     <link href="{{ asset('assets/css/util.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" type="text/css" />
     <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" type="text/css" />
+    <script src="{{ asset('js/app.js') }}"></script>
 @endsection
 
 @section('content')
@@ -78,8 +79,4 @@
         </section>
     </div>
 
-@endsection
-
-@section('scripts')
-    <script src="{{ asset('js/app.js') }}"></script>
 @endsection

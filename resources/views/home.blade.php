@@ -8,265 +8,246 @@
     <link rel="icon" href="favicon.png" type="image/png">
     <link rel="shortcut icon" href="favicon.ico" type="img/x-icon">
 
-    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
+    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/home/animate.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/font-awesome-4.6.1/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/home/owl.carousel.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/home/owl.theme.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/css/home/styles.css') }}" rel="stylesheet" type="text/css">
 
-    <link href="assets/css/bootstrap.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/style.css" rel="stylesheet" type="text/css">
-    <link href="assets/css/font-awesome.css" rel="stylesheet" type="text/css">
-    {{--<link href="css/responsive.css" rel="stylesheet" type="text/css">--}}
-    <link href="assets/css/animate.css" rel="stylesheet" type="text/css">
-
-    <script type="text/javascript" src="assets/js/jquery.1.8.3.min.js"></script>
-    <script type="text/javascript" src="assets/js/bootstrap.js"></script>
-    <script type="text/javascript" src="js/jquery-scrolltofixed.js"></script>
-    <script type="text/javascript" src="js/jquery.easing.1.3.js"></script>
-    <script type="text/javascript" src="js/jquery.isotope.js"></script>
-    <script type="text/javascript" src="js/wow.js"></script>
-    <script type="text/javascript" src="js/classie.js"></script>
-    <script src="contactform/contactform.js"></script>
-
+    <script src="{{ asset ('assets/js/home/modernizr.custom.32033.js') }}"></script>
 </head>
 <body>
-    <!--header-start-->
-    <header class="header" id="header">
-        <div class="container">
-            <figure class="logo animated fadeInDown delay-07s">
-                <a href="#">
-                    <img src="assets/images/ulogo.png" alt="">
-                </a>
-            </figure>
-            <h1 class="animated fadeInDown delay-07s">Bienvenido</h1>
-            <ul class="we-create animated fadeInUp delay-1s">
-                <li>Universidad Mayor de Sansimon</li>
-            </ul>
-            <a class="link animated fadeInUp delay-1s servicelink" href="#service">Iniciar Navegacion</a>
+{{--
+    <div class="pre-loader">
+        <div class="load-con">
+            <img src="{{ asset('assets/images/home/logo.png') }}" class="animated fadeInDown" alt="">
+            <div class="spinner">
+                <div class="bounce1"></div>
+                <div class="bounce2"></div>
+                <div class="bounce3"></div>
+            </div>
         </div>
-    </header>
-    <!--header-end-->
+    </div>
+--}}
+    <!-- Wrap all page content here -->
+    <div id="wrap">
+        <header class="masthead">
+            <div class="slider-container" id="slider">
+                <div class="container">
+                    <div class="row mh-container">
+                        <h1><span>Bienvenidos </span> UMSS</h1>
+                        <h3>Nuevas convocatorias lanzadas </h3>
+                        <div class="col-md-4 col-md-push-4">
+                            <div class="btn-group btn-group-justified btn-lg small">
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-default scrollpoint sp-effect6">
+                                        <span class="apple"></span>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-default scrollpoint sp-effect6">
+                                        <span class="play"></span>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-default scrollpoint sp-effect6">
+                                        <span class="android"></span>
+                                    </a>
+                                </div>
+                                <div class="btn-group">
+                                    <a href="#" class="btn btn-default scrollpoint sp-effect6">
+                                        <span class="windows"></span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-10 col-md-push-1 hidden-xs mh-slider">
+                            <div class="row">
+                                <div class="col-md-3">
+                                </div>
+                                <div class="col-md-6">
+                                    <div id="carousel-slider" class="carousel slide" data-ride="carousel">
 
-    <!--main-nav-start-->
-    <nav class="main-nav-outer" id="test">
-        <div class="container">
-            <ul class="main-nav">
-                <li><a href="#header">Inicio</a></li>
-                <li><a href="#service">Servicios</a></li>
-                <li><a href="#Portfolio">Convocatorias</a></li>
-                <li class="small-logo">
-                    <a href="#header">
-                        <img src="assets/images/logotec.jpg" alt="" width="60px">
-                    </a>
-                </li>
-                <li><a href="{{ url('login') }}">Iniciar Sesión</a></li>
-                <li><a href="#contact">Contactos</a></li>
-                <li><a href="#">Calendario</a></li>
-            </ul>
-            <a class="res-nav_click" href="#"><i class="fa-bars"></i></a>
-        </div>
-    </nav>
-    <!--main-nav-end-->
+                                        <!-- Wrapper for slides -->
+                                        <div class="carousel-inner">
+                                            <div class="item active">
+                                                <img src="{{ asset('assets/images/logoumss.png') }}" alt="..." style="height: 350px" class="img-responsive">
+                                            </div>
+                                            <div class="item">
+                                                <img src="{{ asset('assets/images/logo-fcyt.png') }}" alt="..." style="height: 350px" class="img-responsive">
+                                            </div>
+                                        </div>
 
+                                        <!-- Controls -->
+                                        <a class="left carousel-control" href="#carousel-slider" role="button" data-slide="prev">
+                                            <span class="slider-left"></span>
+                                        </a>
+                                        <a class="right carousel-control" href="#carousel-slider" role="button" data-slide="next">
+                                            <span class="slider-right"></span>
+                                        </a>
+                                    </div>
 
-    <!--main-section-start-->
-    <section class="main-section" id="service">
-        <div class="container">
-            <h2>Servicios</h2>
-            <h6>Tenemos los siguientes servicios a disposicion</h6>
-            <div class="row">
-                <div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
-                    <div class="service-list">
-                        <div class="service-list-col1">
-                            <i class="fa-university"></i>
-                        </div>
-                        <div class="service-list-col2">
-                            <h3>Convocatoria</h3>
-                            <p></p>
-                        </div>
-                    </div>
-                    <div class="service-list">
-                        <div class="service-list-col1">
-                            <i class="fa-building-o"></i>
-                        </div>
-                        <div class="service-list-col2">
-                            <h3>Aulas</h3>
-                        </div>
-                    </div>
-                    <div class="service-list">
-                        <div class="service-list-col1">
-                            <i class="fa-cubes"></i>
-                        </div>
-                        <div class="service-list-col2">
-                            <h3>Convocatoria</h3>
+                                </div>
+                                <div class="col-md-3">
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <figure class="col-lg-8 col-sm-6  text-right wow fadeInUp delay-02s">
-                    <img src="assets/images/servicio.png" alt="">
-                </figure>
             </div>
-        </div>
-    </section>
-    <!--main-section-end-->
 
+            <!-- Fixed navbar -->
+            <div class="navbar navbar-static-top" id="nav" role="navigation">
+                <div class="container">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <i class="fa fa-align-justify"></i>
+                        </button>
+                        <a class="navbar-brand" href="#">
+                            <img src="{{ asset('assets/images/home/logo.png') }}" alt="">
+                        </a>
+                    </div>
 
-    <!--main-section-start-->
-    <section class="main-section paddind" id="Portfolio">
-        <div class="container">
-            <h2>Convocatoria</h2>
-          <div class="portfolioFilter">
-            <ul class="Portfolio-nav wow fadeIn delay-02s">
-                <li><a href="#" data-filter="*" class="current" ></li>
-            </ul>
-           </div>
-
-        </div>
-        <div class="portfolioContainer wow fadeInUp delay-04s">
-        </div>
-    </section>
-    <!--main-section-end-->
-
-
-    <div class="container">
-
-        <section class="main-section contact" id="contact">
-            <h2>Contactos</h2>
-              <div class="col-md-3"></div>
-                <div class="row">
-                    <div class="col-md-6 col-sm-7 wow fadeInLeft">
-                        <div class="contact-info-box address clearfix">
-                            <h3><i class="icon-map-marker"></i>Direccion:</h3>
-                            <span>Calle Sucre y Parque la Torre</span>
-                        </div>
-                        <div class="contact-info-box phone clearfix">
-                            <h3><i class="fa-phone"></i>Telefono:</h3>
-                            <span>4 4556893</span>
-                        </div>
-                        <div class="contact-info-box email clearfix">
-                            <h3><i class="fa-pencil"></i>Email:</h3>
-                            <span>admin@fcyt.umss.edu.bo.com</span>
-                        </div>
-                        <div class="contact-info-box hours clearfix">
-                            <h3><i class="fa-clock-o"></i>Horas:</h3>
-                            <span><strong>Lunes - Viernes :</strong> 6:45am - 10pm<br><strong>Sabado :</strong> 6:45 - 14pm<br><strong>Domingo :</strong> Sin atencion</span>
-                        </div>
-                        <ul class="social-link">
-                            <li class="twitter"><a href="#"><i class="fa-twitter"></i></a></li>
-                            <li class="facebook"><a href="#"><i class="fa-facebook"></i></a></li>
-                            <li class="pinterest"><a href="#"><i class="fa-pinterest"></i></a></li>
-                            <li class="gplus"><a href="#"><i class="fa-google-plus"></i></a></li>
-                            <li class="dribbble"><a href="#"><i class="fa-dribbble"></i></a></li>
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav social hidden-xs hidden-sm">
+                            <li><a href="#"><i class="fa fa-google-plus fa-lg fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter fa-lg fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-facebook fa-lg fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-pinterest fa-lg fa-fw"></i></a></li>
+                            <li><a href="#"><i class="fa fa-linkedin fa-lg fa-fw"></i></a></li>
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="active"><a href="#slider">Inicio</a></li>
+                            <li><a href="#features">Caracteristicas</a></li>
+                            <li><a href="#announcements">Convocatorias</a></li>
+                            <li><a href="#contact">Contactar</a></li>
+                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            <li><a href="{{ url('/register') }}">Registrarse</a></li>
                         </ul>
                     </div>
-
+                    <!-- /.navbar-collapse -->
                 </div>
-            <div class="col-md-3"></div>
+                <!--/.container -->
+            </div>
+            <!--/.navbar -->
+        </header>
+
+        <section id="announcements">
+            <div class="container">
+                <div id="carousel-team" class="carousel slide" data-ride="carousel">
+                    <div class="row">
+                        <div class="col-md-2 hidden-xs">
+                            <a class="car-prev" href="#carousel-team" role="button" data-slide="prev">
+                                <i class="fa fa-chevron-left fa-2x"></i>
+                            </a>
+                        </div>
+                        <div class="col-md-8">
+                            <div class="section-heading scrollpoint sp-effect3">
+                                <h3>Convocatorias<span> postulate ya !!</span></h3>
+                                <span class="divider"></span>
+                                <p>nuevas postulaciones , postulate al area que mas te agrade. lee atentamente tos requisitos para poder ser aceptado de manera efectiva!</p>
+                            </div>
+                        </div>
+                        <div class="col-md-2 hidden-xs">
+                            <a class="car-next" href="#carousel-team" role="button" data-slide="next">
+                                <i class="fa fa-chevron-right fa-2x"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <div class="carousel-inner">
+
+                        @for($i=1; $i <= 2; $i++)
+                            <div class="item {{ $i == 1 ? 'active': '' }}">
+                                @foreach($announcements->chunk(2) as $items)
+                                    <div class="col-md-6">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                @foreach($items as $item)
+                                                    @include('partials.member', [ 'announcement' => $item ])
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+                            </div>
+                        @endfor
+
+                    </div>
+                </div>
+            </div>
         </section>
+
+        <footer id="contact">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-push-2 clearfix">
+                        <div class="section-heading scrollpoint sp-effect3">
+                            <h3>Contactanos<span> envianos tu mensaje</span></h3>
+                            <span class="divider"></span>
+                                <p>Si le das a alguien un programa, lo frustrarás un día. Si le enseñas a programar, lo frustrarás toda la vida.</p>
+                        </div>
+                    </div>
+                    <div class="col-md-12">
+                        <form role="form">
+                            <div class="col-md-6">
+                                <div class="row">
+                                    <div class="col-md-6 spirat">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Tu nombre">
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 spirat">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control" placeholder="Tu correo">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Tu mensaje">
+                                    <span class="input-group-btn">
+                                        <button class="btn" type="button">Enviar tu mensaje</button>
+                                    </span>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-md-12">
+                        <div class="social">
+                            <ul>
+                                <li><a href="#"><i class="fa fa-google-plus fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fa fa-twitter fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fa fa-facebook fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fa fa-pinterest fa-lg"></i></a></li>
+                                <li><a href="#"><i class="fa fa-linkedin fa-lg"></i></a></li>
+                            </ul>
+                        </div>
+                        <p class="rights">
+                            2019 <span>UMSS</span> Developed by <a href="#"><span>CarlosVeizaga.jcvc@gmail.com</span></a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 
-    <footer class="footer">
-        <div class="container">
-            <div class="footer-logo"><a href="#"><img src="assets/images/logotec.jpg" alt=""></a></div>
-            <span class="copyright">&copy; Todo los Derechos Resevados.</span>
-            <div class="credits">
-            </div>
-            <br>
-            <div class="credits">
-                <a href="#">Cochabamba - Bolivia</a>
-            </div>
-        </div>
-    </footer>
-
-
-    <script type="text/javascript">
-        $(document).ready(function(e) {
-            $('#test').scrollToFixed();
-            $('.res-nav_click').click(function(){
-                $('.main-nav').slideToggle();
-                return false
-            });
+        <!-- jQuery 2.1.4 -->
+    <script src="{{ asset('assets/js/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
+    <!-- Bootstrap 3.3.2 JS -->
+    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('assets/js/home/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('assets/js/home/waypoints.min.js') }}"></script>
+    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASm3CwaK9qtcZEWYa-iQwHaGi3gcosAJc&sensor=false"></script>
+    <script src="{{ asset('assets/js/home/script.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            appMaster.preLoader();
         });
     </script>
-
-      <script>
-        wow = new WOW(
-          {
-            animateClass: 'animated',
-            offset:       100
-          }
-        );
-        wow.init();
-      </script>
-
-
-    <script type="text/javascript">
-        $(window).load(function(){
-
-            $('.main-nav li a, .servicelink').bind('click',function(event){
-                var $anchor = $(this);
-
-                $('html, body').stop().animate({
-                    scrollTop: $($anchor.attr('href')).offset().top - 102
-                }, 1500,'easeInOutExpo');
-                /*
-                if you don't want to use the easing effects:
-                $('html, body').stop().animate({
-                    scrollTop: $($anchor.attr('href')).offset().top
-                }, 1000);
-                */
-          if ($(window).width() < 768 ) {
-            $('.main-nav').hide();
-          }
-                event.preventDefault();
-            });
-        })
-    </script>
-
-<script type="text/javascript">
-
-$(window).load(function(){
-
-
-  var $container = $('.portfolioContainer'),
-      $body = $('body'),
-      colW = 375,
-      columns = null;
-
-
-  $container.isotope({
-    // disable window resizing
-    resizable: true,
-    masonry: {
-      columnWidth: colW
-    }
-  });
-
-  $(window).smartresize(function(){
-    // check if columns has changed
-    var currentColumns = Math.floor( ( $body.width() -30 ) / colW );
-    if ( currentColumns !== columns ) {
-      // set new column count
-      columns = currentColumns;
-      // apply width to container manually, then trigger relayout
-      $container.width( columns * colW )
-        .isotope('reLayout');
-    }
-
-  }).smartresize(); // trigger resize to set container width
-  $('.portfolioFilter a').click(function(){
-        $('.portfolioFilter .current').removeClass('current');
-        $(this).addClass('current');
-
-        var selector = $(this).attr('data-filter');
-        $container.isotope({
-
-            filter: selector,
-         });
-         return false;
-    });
-
-});
-
-</script>
-
 </body>
 </html>

@@ -2,8 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Announcement;
+use App\Area;
+use App\Http\Requests\AnnouncementRequest;
+use Carbon\Carbon;
+use Cassandra\Date;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\View\View;
 
 class AnnouncementController extends Controller
 {
@@ -14,7 +20,9 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        //
+        $announcements = Announcement::all();
+
+        return view('admin.announcements.index', [ 'announcements' => $announcements ]);
     }
 
     /**
@@ -24,7 +32,9 @@ class AnnouncementController extends Controller
      */
     public function create()
     {
-        //
+        $areas = Area::all();
+
+        return view('admin.announcements.create', [ 'areas' => $areas]);
     }
 
     /**
@@ -33,9 +43,17 @@ class AnnouncementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AnnouncementRequest $request)
     {
-        //
+        $announcement = new Announcement($request->all());
+
+        $announcement->save();
+
+        $areas = Area::find($request->areas);
+
+        $announcement->areas()->attach($areas);
+
+        return redirect(route('admin.announcements.index'))->with([ 'message' => 'Convocatoria creado exitosamente!', 'alert-type' => 'success' ]);
     }
 
     /**
@@ -57,7 +75,11 @@ class AnnouncementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $announcement = Announcement::find($id);
+
+        $areas = Area::all();
+
+        return view('admin.announcements.edit', [ 'announcement' => $announcement ,'areas' => $areas]);
     }
 
     /**
@@ -67,9 +89,20 @@ class AnnouncementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AnnouncementRequest $request, $id)
     {
-        //
+        $announcement = Announcement::find($id);
+
+        $announcement->update($request->all());
+        $announcement->save();
+
+        $announcement->areas()->detach();
+
+        $areas = Area::find($request->areas);
+
+        $announcement->areas()->attach($areas);
+
+        return redirect(route('admin.announcements.index'))->with([ 'message' => 'Convocatoria actualizado exitosamente!', 'alert-type' => 'info' ]);
     }
 
     /**

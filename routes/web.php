@@ -189,4 +189,34 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', '
         'uses' => 'AreaController@destroy',
     ])->middleware('permission:delete areas');
 
+    //-------------- CONVOCATORIAS ------------------//
+    Route::get('announcements', [
+        'as' => 'announcements.index',
+        'uses' => 'AnnouncementController@index',
+    ])->middleware('permission:list announcements');
+    Route::get('announcements/create', [
+        'as' => 'announcements.create',
+        'uses' => 'AnnouncementController@create',
+    ])->middleware('permission:create announcements');
+    Route::post('announcements/store', [
+        'as' => 'announcements.store',
+        'uses' => 'AnnouncementController@store',
+    ])->middleware('permission:create announcements');
+    Route::get('announcements/{id}/edit', [
+        'as' => 'announcements.edit',
+        'uses' => 'AnnouncementController@edit',
+    ])->middleware('permission:edit announcements');
+    Route::put('announcements/{announcement}', [
+        'as' => 'announcements.update',
+        'uses' => 'AnnouncementController@update',
+    ])->middleware('permission:edit announcements');
+    Route::patch('announcements/{announcement}', [
+        'as' => 'announcements.update',
+        'uses' => 'AnnouncementController@update',
+    ])->middleware('permission:edit announcements');
+    Route::delete('announcements/{announcement}', [
+        'as' => 'announcements.destroy',
+        'uses' => 'AnnouncementController@destroy',
+    ])->middleware('permission:delete announcements');
+
 });

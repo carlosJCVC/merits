@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Announcement;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,9 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $announcements = Announcement::orderBy('created_at', 'asc')->take(8)->get();
+
+        return view('home', [ 'announcements' => $announcements]);
     }
 
     public function login()

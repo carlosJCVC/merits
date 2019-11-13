@@ -10,10 +10,15 @@ require('./bootstrap');
 window.Swal = require('sweetalert2');
 window.toastr = require("toastr");
 window.tilt = require('tilt.js');
+// window.CKEDITOR = require('ckeditor');
+window.DateRangePicker = require('tiny-date-picker/dist/date-range-picker');
+
 require('select2');
 require('./custom');
 
-window.Vue = require('vue');
+//import { DateRangePicker } from 'tiny-date-picker/dist/date-range-picker';
+//window.DateRangePicker = DateRangePicker;
+//window.Vue = require('vue');
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

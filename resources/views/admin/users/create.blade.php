@@ -81,5 +81,13 @@
 @endsection
 
 @section('scripts')
-    <script src="{{ asset('js/app.js') }}"></script>
+    <script src="{{ asset('assets/js/plugins/select2/select2.js') }}"></script>
+    <script>
+        $(document).ready(function() {
+            $('.js-example-basic-multiple').select2({
+                placeholder: "Seleccione un valor",
+                allowClear: true
+            });
+        });
+    </script>
 @endsection
