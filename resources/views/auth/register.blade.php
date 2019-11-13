@@ -51,7 +51,7 @@
         </div>
 
         <div class="text-center p-t-136">
-            <a class="txt2" href="{{ route('auth.login') }}">
+            <a class="txt2" href="{{ url('/login') }}">
                 I already have a membership
                 <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
             </a>
