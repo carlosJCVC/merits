@@ -46,7 +46,11 @@ class AnnouncementController extends Controller
     public function store(AnnouncementRequest $request)
     {
         $announcement = new Announcement($request->all());
-
+        $announcement->start_date_announcement = new Carbon($request->start_date_announcement);
+        $announcement->end_date_announcement = new Carbon($request->end_date_announcement);
+        $announcement->start_date_calification = new Carbon($request->start_date_calification);
+        $announcement->end_date_calification = new Carbon($request->end_date_calification);
+        
         $announcement->save();
 
         $areas = Area::find($request->areas);
