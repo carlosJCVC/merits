@@ -1,0 +1,221 @@
+$border: 1px hsla(120, 50, 30, 1) solid;
+
+section {
+  padding: 0;
+}
+
+.title-center {
+  text-align: center;
+}
+
+.title-center h2 {
+  text-transform: uppercase;
+  text-decoration: #00e765;
+  font-family: cursive;
+}
+
+.row .card {
+  background-color: #fff;
+  border: 3px solid transparent;
+  border-radius: 6px;
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+}
+
+.row .card .card-header {
+  border-radius: 6px 6px 0 0;
+  padding: 8px;
+  border: $border;
+  text-align: center;
+}
+
+.row .card .card-body {
+  display: block;
+  width: 100%;
+//  padding: 12px;
+  border: $border;
+}
+
+.row .card .card-body p {
+  font-size: 17px;
+  color: white;
+}
+
+.row .card .card-img {
+  background-image: url("../../../public/assets/images/adinfondo.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+}
+
+.row .card .card-img img {
+  height: 100%;
+  width: 100%;
+}
+
+.row .card .card-footer{
+  border-radius: 0 0 6px 6px;
+  padding: 8px;
+}
+
+.row .card .card-image-center {
+  position: center !important;
+  background-color: red;
+  width: 50%;
+  height: 50%;
+}
+
+.row .card .card-body h1:first-child,
+.row .card .card-body h2:first-child,
+.row .card .card-body h3:first-child,
+.row .card .card-body h4:first-child,
+.row .card .card-body .h1,
+.row .card .card-body .h2,
+.row .card .card-body .h3,
+.row  .card .card-body .h4 {
+  margin-top: 0;
+}
+
+.row .card .card-body .heading{
+  display: block;
+}
+
+.row .row .card .card-body .heading:last-child{
+  margin-bottom: 0;
+}
+
+.row .card .card-body .lead{
+  text-align: center;
+}
+
+@media( min-width: 990px ){
+  .row .card .card-left{
+    float: left;
+    padding: 0 8px 0 0;
+  }
+}
+
+@media( min-width: 770px ){
+
+  .card .card-6-6 {
+    background-color: #4b646f;
+  }
+
+  .card .card-4-8 .card-left{
+    width: 33.33333333%;
+  }
+
+  .card .card-4-8 .card-right{
+    width: 66.66666667%;
+  }
+
+  .card .card-5-7 .card-left{
+    width: 41.66666667%;
+  }
+
+  .card .card-5-7 .card-right{
+    width: 58.33333333%;
+  }
+
+  .card .card-6-6 .card-left{
+    width: 50%;
+  }
+
+  .card .card-6-6 .card-right{
+    width: 50%;
+  }
+
+  .card .card-7-5 .card-left{
+    width: 58.33333333%;
+  }
+
+  .card .card-7-5 .card-right{
+    width: 41.66666667%;
+  }
+
+  .card .card-8-4 .card-left{
+    width: 66.66666667%;
+  }
+
+  .card .card-8-4 .card-right{
+    width: 33.33333333%;
+  }
+}
+
+/* -- default theme ------ */
+.card-default {
+  border-color: #ddd;
+  background-color: #fff;
+  margin-bottom: 24px;
+}
+
+.card-default > .card-header,
+.card-default > .card-footer{
+  color: #333;
+  background-color: #ddd;
+}
+
+.card-default > .card-header {
+  border-bottom: 1px solid #ddd;
+  padding: 8px;
+}
+
+.card-default > .card-footer{
+  border-top: 1px solid #ddd;
+  padding: 8px;
+}
+
+.card-default > .card-body {
+  margin: 0;
+}
+.card-default > .card-img:first-child img {
+  border-radius: 6px 6px 0 0;
+}
+
+.card-default > .card-left{
+  padding-right: 4px;
+}
+
+.card-default > .card-right{
+  padding-left: 4px;
+}
+
+.card-default p:last-child{
+  margin-bottom: 0;
+}
+
+.card-default .card-caption {
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.row .btn-custom {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 2px hsla(120%, 50%, 50%, 1) solid;
+  color: hsla(120%, 100%, 50%, 1);
+}
+
+.row .btn-custom:hover {
+  width: 100%;
+  background-color: hsla(120%, 50%, 50%, 1);
+  border-radius: 20px;
+  // border: 2px hsla(120%, 50%, 50%, 1) solid;
+  color: #fff;
+}
+
+.btn-custom-post {
+  width: 100%;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 2px hsla(180%, 50%, 50%, 1) solid;
+  color: hsla(180%, 100%, 50%, 1);
+}
+
+.btn-custom-post:hover {
+  width: 100%;
+  background-color: hsla(180%, 50%, 50%, 1);
+  border-radius: 20px;
+  color: #fff;
+}

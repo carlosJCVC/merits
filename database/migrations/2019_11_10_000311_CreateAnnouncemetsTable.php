@@ -30,6 +30,7 @@ class CreateAnnouncemetsTable extends Migration
 
             $table->string('title');
             $table->string('description');
+            $table->boolean('required')->default(false);
             $table->timestamps();
 
             $table->foreign('announcement_id')

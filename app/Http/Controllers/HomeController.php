@@ -43,4 +43,11 @@ class HomeController extends Controller
     {
         return view('auth.reset');
     }
+
+    public function announcements()
+    {
+        $announcements = Announcement::orderBy('created_at', 'asc')->get();
+
+        return view('announcement', [ 'announcements' => $announcements ]);
+    }
 }

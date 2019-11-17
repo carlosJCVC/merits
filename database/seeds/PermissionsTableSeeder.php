@@ -33,6 +33,11 @@ class PermissionsTableSeeder extends Seeder
             [ 'name' => 'create announcements' ],
             [ 'name' => 'edit announcements' ],
             [ 'name' => 'delete announcements' ],
+
+            [ 'name' => 'list requirements' ],
+            [ 'name' => 'create requirements' ],
+            [ 'name' => 'edit requirements' ],
+            [ 'name' => 'delete requirements' ],
         ];
 
         $admin = Role::find(1);

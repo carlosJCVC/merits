@@ -18,7 +18,7 @@
     <script src="{{ asset ('assets/js/home/modernizr.custom.32033.js') }}"></script>
 </head>
 <body>
-{{--
+
     <div class="pre-loader">
         <div class="load-con">
             <img src="{{ asset('assets/images/home/logo.png') }}" class="animated fadeInDown" alt="">
@@ -29,7 +29,7 @@
             </div>
         </div>
     </div>
---}}
+
     <!-- Wrap all page content here -->
     <div id="wrap">
         <header class="masthead">
@@ -122,10 +122,11 @@
                         <ul class="nav navbar-nav navbar-right">
                             <li class="active"><a href="#slider">Inicio</a></li>
                             <li><a href="#features">Caracteristicas</a></li>
-                            <li><a href="#announcements">Convocatorias</a></li>
+                            <li><a href="#announcements">Ultimas Convocatorias</a></li>
+                            <li><a href="{{ url('/announcements') }}">Convocatorias</a></li>
                             <li><a href="#contact">Contactar</a></li>
                             <li><a href="{{ url('/login') }}">Login</a></li>
-                            <li><a href="{{ url('/register') }}">Registrarse</a></li>
+                            {{-- <li><a href="{{ url('/register') }}">Registrarse</a></li> --}}
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

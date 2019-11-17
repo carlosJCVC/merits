@@ -28,4 +28,12 @@ class Announcement extends Model
         return $this->belongsToMany('App\Area');
     }
 
+    /**
+     * Get the requirements for the announcement.
+     */
+    public function requirements()
+    {
+        return $this->hasMany('App\Requirement');
+    }
+
 }

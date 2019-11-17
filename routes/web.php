@@ -33,6 +33,11 @@ Route::get('/reset_password', [
     'uses' => 'Auth\ResetPasswordController@showResetForm'
 ]);
 
+Route::get('/announcements', [
+    'as' => 'home.announcements',
+    'uses' => 'HomeController@announcements'
+]);
+
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', 'namespace' => 'Admin'], function() {
     Route::get('dashboard', [
         'as' => 'dashboard',
@@ -218,5 +223,35 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', '
         'as' => 'announcements.destroy',
         'uses' => 'AnnouncementController@destroy',
     ])->middleware('permission:delete announcements');
+
+    //-------------- REQUIREMENTS ------------------//
+    Route::get('{announcement}/requirements', [
+        'as' => 'requirements.index',
+        'uses' => 'RequirementController@index',
+    ])->middleware('permission:list requirements');
+    Route::get('{announcement}/requirements/create', [
+        'as' => 'requirements.create',
+        'uses' => 'RequirementController@create',
+    ])->middleware('permission:create requirements');
+    Route::post('{announcement}requirements/store', [
+        'as' => 'requirements.store',
+        'uses' => 'RequirementController@store',
+    ])->middleware('permission:create requirements');
+    Route::get('{announcement}requirements/{requirement}/edit', [
+        'as' => 'requirements.edit',
+        'uses' => 'RequirementController@edit',
+    ])->middleware('permission:edit requirements');
+    Route::put('{announcement}requirements/{requirement}', [
+        'as' => 'requirements.update',
+        'uses' => 'RequirementController@update',
+    ])->middleware('permission:edit requirements');
+    Route::patch('{announcement}requirements/{requirement}', [
+        'as' => 'requirements.update',
+        'uses' => 'RequirementController@update',
+    ])->middleware('permission:edit requirements');
+    Route::delete('{announcement}requirements/{requirement}', [
+        'as' => 'requirements.destroy',
+        'uses' => 'RequirementController@destroy',
+    ])->middleware('permission:delete requirements');
 
 });
