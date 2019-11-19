@@ -44,10 +44,10 @@
     </div>
 
     <div class="text-center p-t-136">
-      <a class="txt2" href="{{ route('auth.register') }}">
-        Create your Account
+      {{-- <a class="txt2" href="{{ route('postulans.create') }}"> --}}
+        <span style="color: #222d32">CarlosVeizaga.JCVC@gmail.com</span>
         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-      </a>
+      {{-- </a> --}}
     </div>
   </form>
 

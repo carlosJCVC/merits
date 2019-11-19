@@ -16,12 +16,18 @@ class UsersTableSeeder extends Seeder
         $users = [
             [
                 'name' => 'Administrator',
+                'lastname' => 'Admin',
+                'phone' => '1254646',
+                'gender' => 'M',
                 'email' => 'admin@admin.com',
                 'password' => bcrypt('admin'),
                 'remember_token' => '',
             ],
             [
                 'name' => 'Carlos',
+                'lastname' => 'Veizaga',
+                'phone' => '54564646',
+                'gender' => 'M',
                 'email' => 'carlos@carlos.com',
                 'password' => bcrypt('admin'),
                 'remember_token' => '',

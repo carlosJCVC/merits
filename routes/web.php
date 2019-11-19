@@ -18,16 +18,6 @@ Route::get('/', [
     'uses' => 'HomeController@index'
 ]);
 
-Route::get('/register', [
-    'as' => 'auth.register',
-    'uses' => 'Auth\RegisterController@showRegistrationForm'
-]);
-
-Route::post('/register_store', [
-    'as' => 'auth.register_store',
-    'uses' => 'Auth\RegisterController@storeRegistration'
-]);
-
 Route::get('/reset_password', [
     'as' => 'auth.reset_password',
     'uses' => 'Auth\ResetPasswordController@showResetForm'
@@ -38,6 +28,17 @@ Route::get('/announcements', [
     'uses' => 'HomeController@announcements'
 ]);
 
+//-----------POSTULANT CREATE--------------//
+Route::get('postulans/create', [
+    'as' => 'postulans.create',
+    'uses' => 'PostulantController@create',
+]);
+Route::post('postulans/store', [
+    'as' => 'postulans.store',
+    'uses' => 'PostulantController@store',
+]);
+
+////////////////////// ADMIN ROUTES ///////////////////
 Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', 'namespace' => 'Admin'], function() {
     Route::get('dashboard', [
         'as' => 'dashboard',

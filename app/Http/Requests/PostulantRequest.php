@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UserRequest extends FormRequest
+class PostulantRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -32,11 +32,11 @@ class UserRequest extends FormRequest
                 return [
                     'name' => 'required|max:100',
                     'lastname' => 'required|max:100',
-                    'gender' => 'required',
                     'email' => 'required|email|unique:users,email',
+                    'phone' => 'required|numeric',
+                    'gender' => 'required',
                     'password' => 'required|between:3,32',
                     'password_confirm' => 'required|same:password',
-                    'roles' => 'required',
                 ];
             }
             case 'PUT':
@@ -44,15 +44,13 @@ class UserRequest extends FormRequest
                 return [
                     'name' => 'required|max:100',
                     'lastname' => 'required|max:100',
-                    'gender' => 'required',
                     'email' => 'required|email|unique:users,email,' . $this->user->id,
+                    'phone' => 'required|numeric',
+                    'gender' => 'required',
                     'password' => 'required|between:3,32',
                     'password_confirm' => 'required|same:password',
-                    'roles' => 'required',
                 ];
             }
-            default:
-                break;
         }
 
         return [
@@ -65,16 +63,16 @@ class UserRequest extends FormRequest
         return [
             'name.required' => 'El campo :attribute es obligatorio.',
             'lastname.required' => 'El campo :attribute es obligatorio.',
-            'gender.required' => 'El campo :attribute es obligatorio.',
             'email.required' => 'El campo :attribute es obligatorio.',
-            'roles.required' => 'El campo :attribute es obligatorio.',
+            'phone.required' => 'El campo :attribute es obligatorio.',
+            'gender.required' => 'El campo :attribute es obligatorio.',
+            'password.required' => 'El campo :attribute es obligatorio.',
 
+            'phone.numeric' => 'El campo :attribute debe contener solo numeros.',
             'email.unique' => 'El campo :attribute ya existe.',
 
-            'password.required' => 'El campo :attribute es obligatorio.',
             'password.between' => 'El campo :attribute debe tener 6 a 32 caracteres.',
             'password_confirm.same' => 'Este campo no coincide con el Password.',
-            'password_confirm.required' => 'El campo :attribute es obligatorio.',
         ];
     }
 
@@ -83,11 +81,10 @@ class UserRequest extends FormRequest
         return [
             'name' => 'Nombre',
             'lastname' => 'Apellido',
-            'gender' => 'Genero',
             'email' => 'E-mail',
+            'phone' => 'Telefono/Celular',
+            'gender' => 'Genero',
             'password' => 'Password',
-            'role' => 'Role o Roles',
         ];
     }
-
 }

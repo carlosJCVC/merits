@@ -9,13 +9,40 @@
                 <span class="help-block">
                     <strong>{{ $errors->first('name') }}</strong>
                 </span>
-            @else
-                <span class="help-block">
-                    <strong>Ingrese nombre</strong>
-                </span>
             @endif
         </div>
      </div>
+
+    <div class="form-group {{ $errors->has('lastname') ? ' has-error' : '' }}">
+        <label for="lastname" class="col-sm-2 control-label">Apellido(*)</label>
+        <div class="col-sm-10">
+            <input type="text" class="form-control" name="lastname" value="{{ old('lastname', isset($user) ? $user->lastname : '') }}"
+                   placeholder="Apellido">
+
+            @if ($errors->has('lastname'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('lastname') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
+
+    <div class="form-group {{ $errors->has('gender') ? ' has-error' : '' }}">
+        <label for="gender" class="col-sm-2 control-label">Sexo (*)</label>
+        <div class="col-sm-10">
+            <select class="form-control" name="gender">
+                <option disabled hidden selected>Seleccione sexo</option>
+                <option value="M" {{ ( isset($user) && $user->gender == 'M') ? 'selected' : '' }}>MASCULINO</option>
+                <option value="F" {{ ( isset($user) && $user->gender == 'F') ? 'selected' : '' }}>FEMENINO</option>
+            </select>
+
+            @if ($errors->has('gender'))
+                <span class="help-block">
+                    <strong>{{ $errors->first('gender') }}</strong>
+                </span>
+            @endif
+        </div>
+    </div>
 
      <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
          <label for="email" class="col-sm-2 control-label">Email(*)</label>
@@ -26,10 +53,6 @@
              @if ($errors->has('email'))
                  <span class="help-block">
                     <strong>{{ $errors->first('email') }}</strong>
-                </span>
-             @else
-                 <span class="help-block">
-                    <strong>Ingrese email</strong>
                 </span>
              @endif
          </div>
@@ -45,10 +68,6 @@
                  <span class="help-block">
                     <strong>{{ $errors->first('password') }}</strong>
                 </span>
-             @else
-                 <span class="help-block">
-                    <strong>Ingrese password</strong>
-                </span>
              @endif
          </div>
      </div>
@@ -63,10 +82,6 @@
                 <span class="help-block">
                     <strong>{{ $errors->first('password_confirm') }}</strong>
                 </span>
-            @else
-                <span class="help-block">
-                    <strong>Confrima password</strong>
-                </span>
             @endif
         </div>
     </div>
@@ -80,9 +95,9 @@
                 @endforeach
             </select>
 
-            @if ($errors->has('password'))
+            @if ($errors->has('roles'))
                 <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
+                    <strong>{{ $errors->first('roles') }}</strong>
                 </span>
             @endif
         </div>

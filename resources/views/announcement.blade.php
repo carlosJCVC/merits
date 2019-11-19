@@ -36,13 +36,13 @@
                     </div>
 
                     <div class="row" style="text-transform: uppercase; padding:15px">
-                        <span style="color: red;"><b>REQUISITOS OBLIGATORIOS</b></span>
+                        <span style="color: red;"><b>REQUISITOS EXTRA</b></span>
                         <ul id="list_requirements"></ul>
                     </div>
 
                 </div>
 
-                <a class="btn btn-custom-post" href="">POSTULARSE</a>
+                <a class="btn btn-custom-post" href="{{ route('postulans.create') }}">POSTULARSE</a>
 
                 <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>

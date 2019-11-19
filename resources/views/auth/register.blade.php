@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-    <form class="login100-form validate-form" action="{{ route('auth.register_store') }}" method="POST">
+    <form class="login100-form validate-form" action="{{ route('postulans.store') }}" method="POST">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
         <span class="login100-form-title">
