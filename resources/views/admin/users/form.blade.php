@@ -1,106 +1,129 @@
-<div class="box-body">
-     <div class="form-group {{ $errors->has('name') ? ' has-error' : '' }}">
-        <label for="name" class="col-sm-2 control-label">Nombre(*)</label>
-        <div class="col-sm-10">
-            <input type="name" class="form-control" id="name" name="name" value="{{ old('name', isset($user) ? $user->name : '') }}"
-                   placeholder="Nombre">
+<div class="form-row">
 
-            @if ($errors->has('name'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('name') }}</strong>
-                </span>
-            @endif
+    <div class="col-md-6 mb-3">
+        <label class="col-form-label" for="name">Nombre</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">N</button>
+            </span>
+            <input
+                    class="form-control {{ $errors->has('name') ? 'is-invalid' : '' }}"
+                    name="name"
+                    placeholder="Ingrese Nombre" type="text"  value="{{ old('name', isset($user) ? $user->name : '') }}">
         </div>
-     </div>
 
-    <div class="form-group {{ $errors->has('lastname') ? ' has-error' : '' }}">
-        <label for="lastname" class="col-sm-2 control-label">Apellido(*)</label>
-        <div class="col-sm-10">
-            <input type="text" class="form-control" name="lastname" value="{{ old('lastname', isset($user) ? $user->lastname : '') }}"
-                   placeholder="Apellido">
-
-            @if ($errors->has('lastname'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('lastname') }}</strong>
-                </span>
-            @endif
+        <div class="invalid-feedback {{ $errors->has('name')? 'd-block' : '' }}">
+            {{ $errors->has('name')? $errors->first('name') : 'El campo de Nombre es requerido'  }}
         </div>
     </div>
 
-    <div class="form-group {{ $errors->has('gender') ? ' has-error' : '' }}">
-        <label for="gender" class="col-sm-2 control-label">Sexo (*)</label>
-        <div class="col-sm-10">
-            <select class="form-control" name="gender">
+    <div class="col-md-6 mb-3">
+        <label class="col-form-label" for="lastname">Apellido</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">A</button>
+            </span>
+            <input
+                    class="form-control {{ $errors->has('lastname') ? 'is-invalid' : '' }}"
+                    name="lastname"
+                    placeholder="Ingrese apellido " type="text" value="{{ old('lastname', isset($user) ? $user->lastname : '') }}">
+        </div>
+
+        <div class="invalid-feedback {{ $errors->has('lastname')? 'd-block' : '' }}">
+            {{ $errors->has('lastname')? $errors->first('lastname') : 'El campo de Apellido es requerido'  }}
+        </div>
+    </div>
+
+    <div class="col-md-12 mb-3">
+        <label class="col-form-label" for="sex">Sexo</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">S</button>
+            </span>
+
+            <select class="form-control {{ $errors->has('gender') ? 'is-invalid' : '' }}" name="gender" type="text">
                 <option disabled hidden selected>Seleccione sexo</option>
                 <option value="M" {{ ( isset($user) && $user->gender == 'M') ? 'selected' : '' }}>MASCULINO</option>
                 <option value="F" {{ ( isset($user) && $user->gender == 'F') ? 'selected' : '' }}>FEMENINO</option>
             </select>
+        </div>
 
-            @if ($errors->has('gender'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('gender') }}</strong>
-                </span>
-            @endif
+        <div class="invalid-feedback {{ $errors->has('gender')? 'd-block' : '' }}">
+            {{ $errors->has('gender')? $errors->first('gender') : 'El campo de genero es requerido'  }}
         </div>
     </div>
 
-     <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
-         <label for="email" class="col-sm-2 control-label">Email(*)</label>
-         <div class="col-sm-10">
-             <input type="email" class="form-control" id="email" name="email" value="{{ old('email', isset($user) ? $user->email : '') }}"
-                    placeholder="E-mail">
+    <div class="col-md-12 mb-3">
+        <label class="col-form-label" for="email">E-mail</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">@</button>
+            </span>
 
-             @if ($errors->has('email'))
-                 <span class="help-block">
-                    <strong>{{ $errors->first('email') }}</strong>
-                </span>
-             @endif
-         </div>
-     </div>
+            <input
+                    class="form-control {{ $errors->has('email') ? 'is-invalid' : '' }}"
+                    name="email"
+                    placeholder="Ingrese email" type="text" value="{{ old('email', isset($user) ? $user->email : '' ) }}">
+        </div>
 
-     <div class="form-group {{ $errors->has('password') ? ' has-error' : '' }}">
-         <label for="password" class="col-sm-2 control-label">Password(*)</label>
-         <div class="col-sm-10">
-             <input type="password" class="form-control" id="password" name="password" value="{{ old('password') }}"
-                    placeholder="Password">
-
-             @if ($errors->has('password'))
-                 <span class="help-block">
-                    <strong>{{ $errors->first('password') }}</strong>
-                </span>
-             @endif
-         </div>
-     </div>
-
-    <div class="form-group {{ $errors->has('password_confirm') ? ' has-error' : '' }}">
-        <label for="password_confirm" class="col-sm-2 control-label">Confirm Password(*)</label>
-        <div class="col-sm-10">
-            <input type="password" class="form-control" id="password" name="password_confirm" value="{{ old('password_confirm') }}"
-                   placeholder="Confirma el password">
-
-            @if ($errors->has('password_confirm'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('password_confirm') }}</strong>
-                </span>
-            @endif
+        <div class="invalid-feedback {{ $errors->has('email')? 'd-block' : '' }}">
+            {{ $errors->has('email')? $errors->first('email') : 'El campo de E-mail es requerido'  }}
         </div>
     </div>
 
-    <div class=" {{ $errors->has('roles') ? ' has-error' : '' }}">
-        <label for="role" class="col-sm-2 control-label">Roles(*)</label>
-        <div class="col-sm-10">
-            <select class="form-control js-example-basic-multiple" name="roles[]" multiple="multiple">
+    {{-- @if(!isset($user)) --}}
+    <div class="col-md-6 mb-3">
+        <label class="col-form-label" for="password">Password</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">P</button>
+            </span>
+
+            <input
+                    class="form-control {{ $errors->has('password') ? 'is-invalid' : '' }}"
+                    name="password"
+                    placeholder="Ingrese una contrasenia" type="text" value="{{ old('password') }}">
+        </div>
+
+        <div class="invalid-feedback {{ $errors->has('password')? 'd-block' : '' }}">
+            {{ $errors->has('password')? $errors->first('password') : 'El campo de Password es requerido'  }}
+        </div>
+    </div>
+
+    <div class="col-md-6 mb-3">
+        <label class="col-form-label" for="confirm_password">Confirm Password</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">CP</button>
+            </span>
+
+            <input
+                    class="form-control {{ $errors->has('password_confirm') ? 'is-invalid' : '' }}"
+                    name="password_confirm"
+                    placeholder="Confirme su contrasenia" type="text" value="{{ old('password_confirm') }}">
+        </div>
+
+        <div class="invalid-feedback {{ $errors->has('password_confirm')? 'd-block' : '' }}">
+            {{ $errors->has('password_confirm')? $errors->first('password_confirm') : 'Este campo es requerido'  }}
+        </div>
+    </div>
+    {{-- @endif --}}
+
+    <div class="col-md-12 mb-3">
+        <label class="col-form-label" for="roles">Roles</label>
+        <div class="input-group">
+                                                <span class="input-group-append">
+                                                    <button class="btn btn-primary" type="button">R</button>
+                                                </span>
+            <select class="form-control js-example-basic-multiple {{ $errors->has('roles') ? 'is-invalid' : '' }}" name="roles[]" multiple="multiple">
                 @foreach($roles as $item)
                     <option value="{{ $item->name }}" {{ (isset($user) && $user->roles->contains('name', $item->name)) ? 'selected' : '' }}>{{ $item->name }}</option>
                 @endforeach
             </select>
+        </div>
 
-            @if ($errors->has('roles'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('roles') }}</strong>
-                </span>
-            @endif
+        <div class="invalid-feedback {{ $errors->has('roles')? 'd-block' : '' }}">
+            {{ $errors->has('roles')? $errors->first('roles') : 'Este campo es requerido'  }}
         </div>
     </div>
-
- </div>
+</div>

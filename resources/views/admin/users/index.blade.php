@@ -6,118 +6,55 @@
 
 
 @section('content')
-    <div class="content-wrapper">
-        <section class="content-header">
+    <div class="card">
+        <div class="card-header">
+            <i class="fa fa-align-justify"></i> Usuarios
+            <a class="btn btn-secondary" href="{{ route('admin.users.create') }}">
+                <i class="icon-plus"></i>&nbsp;Nuevo
+            </a>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered table-striped table-sm">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Email</th>
+                    <th>Roles</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($users as $user)
+                    <tr>
+                        <td>{{ $user->name }}</td>
+                        <td>{{ $user->email }}</td>
+                        <td>
+                            @foreach($user->roles as $item)
+                                <span class="badge badge-info">{{ $item->name  }}</span>
+                            @endforeach
+                        </td>
+                        <td>
 
-            <h1>
-                Lista de Usuarios
-            </h1>
+                            <a class="btn btn-warning btn-sm" href="{{ route('admin.users.edit', $user->id) }}">
+                                <i class="icon-pencil"></i>
+                            </a> &nbsp;
+                            <form action="{{ route('admin.users.destroy', $user->id) }}"
+                                  style="display:inline-block;"
+                                  method="POST">
 
-            <ol class="breadcrumb">
-                <li>
-                    <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Inicio</a>
-                </li>
-                <li class="active">Lista de Usuarios</li>
-            </ol>
+                                {{ csrf_field() }}
+                                {{ method_field('DELETE') }}
 
-        </section>
+                                <button type="button" class="btn btn-danger btn-sm"
+                                        onclick="delete_action(event);">
+                                    <i class="icon-trash"></i>
+                                </button>
+                            </form>
 
-        <section class="content">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">
-                        <a href="{{ route('admin.users.create') }}" class="btn btn-info">
-                            <i class="fa fa-plus"></i> registrar usuario
-                        </a>
-                    </h3>
-
-                    <div class="box-tools pull-right">
-
-                        <button type="button"
-                                class="btn btn-box-tool"
-                                data-widget="collapse"
-                                data-toggle="tooltip"
-                                title="Collapse">
-
-                            <i class="fa fa-minus"></i>
-                        </button>
-
-                        <button type="button"
-                                class="btn btn-box-tool"
-                                data-widget="remove"
-                                data-toggle="tooltip"
-                                title="Remove">
-                            <i class="fa fa-times"></i>
-                        </button>
-                    </div>
-                </div>
-
-                <div class="box-body table-responsive no-padding">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Roles</th>
-                                <th>Acciones</th>
-                                <th>&nbsp;</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        @foreach($users as $user)
-                            <tr>
-                                <td>{{ $loop->index+1 }}</td>
-                                <td>
-                                    <span class="lead">
-                                        {{ $user->name }}
-                                    </span>
-                                </td>
-                                <td>
-                                    <span class="lead">
-                                        {{ $user->email }}
-                                    </span>
-                                </td>
-                                <td>
-                                    @foreach($user->roles as $item)
-                                        <span class="label label-info">{{ $item->name  }}</span>
-                                    @endforeach
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a class="btn btn-info" href="{{ route('admin.users.edit', $user->id) }}">
-                                            <i class="fa fa-edit"></i> editar
-                                        </a>
-                                        <form action="{{ route('admin.users.destroy', $user->id) }}"
-                                              style="display:inline-block;"
-                                              method="POST">
-
-                                            {{ csrf_field() }}
-                                            {{ method_field('DELETE') }}
-
-                                            <button class="btn btn-danger"
-                                                    type="button"
-                                                    onclick="delete_action(event);">
-                                                <i class="fa fa-remove"></i> eliminar
-                                            </button>
-
-                                        </form>
-                                    </div>
-                                </td>
-                        @endforeach
-                        </tbody>
-                        <tfooter>
-                            <tr>
-                                <th>#</th>
-                                <th>Nombre</th>
-                                <th>Email</th>
-                                <th>Roles</th>
-                                <th>&nbsp;</th>
-                            </tr>
-
-                        </tfooter>
-                    </table>
-                </div>
-            </div>
-        </section>
+                        </td>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
 @endsection

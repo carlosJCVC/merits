@@ -1,56 +1,55 @@
-<div class="box-body">
-     <div class="form-group {{ $errors->has('title') ? ' has-error' : '' }}">
-        <label for="title" class="col-sm-2 control-label">Titulo(*)</label>
-        <div class="col-sm-10">
+<div class="form-row">
 
-            <input type="text" class="form-control" id="title" name="title" value="{{ old('title', isset($requirement) ? $requirement->title : '') }}"
-                   placeholder="Titulo del requisito">
-
-            @if ($errors->has('title'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('title') }}</strong>
-                </span>
-            @else
-                <span class="help-block">
-                    <strong>Ingrese titulo de requisito</strong>
-                </span>
-            @endif
+    <div class="col-md-12 mb-3">
+        <label class="col-form-label" for="title">Titulo</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">T</button>
+            </span>
+            <input
+                    class="form-control {{ $errors->has('title') ? 'is-invalid' : '' }}"
+                    name="title"
+                    placeholder="Ingrese Titulo" type="text"  value="{{ old('title', isset($requirement) ? $requirement->title : '') }}">
         </div>
-     </div>
 
-     <div class="form-group {{ $errors->has('description') ? ' has-error' : '' }}">
-         <label for="description" class="col-sm-2 control-label">Descripcion(*)</label>
-         <div class="col-sm-10">
-             <textarea type="text" class="form-control" name="description"
-                       placeholder="Descripcion de requisito">{{ old('description', isset($requirement) ? $requirement->description : '') }}</textarea>
+        <div class="invalid-feedback {{ $errors->has('title')? 'd-block' : '' }}">
+            {{ $errors->has('title')? $errors->first('title') : 'El campo de Titulo es requerido'  }}
+        </div>
+    </div>
 
-             @if ($errors->has('description'))
-                 <span class="help-block">
-                    <strong>{{ $errors->first('description') }}</strong>
-                </span>
-             @else
-                 <span class="help-block">
-                    <strong>Descripcion</strong>
-                </span>
-             @endif
-         </div>
-     </div>
+    <div class="col-md-12 mb-3">
+        <label class="col-form-label" for="description">Descripcion</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">D</button>
+            </span>
+            <textarea
+                    class="form-control {{ $errors->has('description') ? 'is-invalid' : '' }}"
+                    name="description"
+                    placeholder="Ingrese una descripcion" type="text">{{ old('description', isset($requirement) ? $requirement->description : '') }}</textarea>
+        </div>
 
-    <div class="form-group {{ $errors->has('required') ? ' has-error' : '' }}">
-        <label for="required" class="col-sm-2 control-label">Selecciona (*)</label>
-        <div class="col-sm-10">
-            <select class="form-control" id="required" name="required">
-                <option selected disabled hidden>Seleccione una opcion</option>
-                <option value=true>Obligatorio</option>
-                <option value=false>Extra</option>
+        <div class="invalid-feedback {{ $errors->has('description')? 'd-block' : '' }}">
+            {{ $errors->has('description')? $errors->first('description') : 'El campo de Nombre es requerido'  }}
+        </div>
+    </div>
+
+    <div class="col-md-12 mb-3">
+        <label class="col-form-label" for="required">Tipo de requisito</label>
+        <div class="input-group">
+            <span class="input-group-append">
+                <button class="btn btn-primary" type="button">S</button>
+            </span>
+
+            <select class="form-control {{ $errors->has('required') ? 'is-invalid' : '' }}" name="required">
+                <option disabled hidden selected>Seleccione requisito</option>
+                <option value=true {{ ( isset($requirement) && $requirement->required == true) ? 'selected' : '' }}>INDISPENSABLE</option>
+                <option value=false {{ ( isset($requirement) && $requirement->required == false) ? 'selected' : '' }}>GENERAL</option>
             </select>
-            @if ($errors->has('required'))
-                <span class="help-block">
-                    <strong>{{ $errors->first('required') }}</strong>
-                </span>
-            @endif
+        </div>
+
+        <div class="invalid-feedback {{ $errors->has('required')? 'd-block' : '' }}">
+            {{ $errors->has('gender')? $errors->first('required') : 'El campo de genero es requerido'  }}
         </div>
     </div>
-
-
-    </div>
+</div>

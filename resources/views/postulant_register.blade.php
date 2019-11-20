@@ -62,8 +62,8 @@
                         <div class="wrap-input100 validate-input {{ $errors->has('gender')? 'alert-validate' : '' }}" data-validate="{{ $errors->has('gender')? $errors->first('gender') : 'Genero valido es requerido' }}">
                             <select class="input100" name="gender">
                                 <option disabled hidden selected>Seleccionar genero</option>
-                                <option value="M">MASCULINO</option>
-                                <option value="F">FEMENINO</option>
+                                <option value="M" {{ old('gender') == 'M' ? 'selected' : '' }}>MASCULINO</option>
+                                <option value="F" {{ old('gender') == 'F' ? 'selected' : '' }}>FEMENINO</option>
                             </select>
                             <span class="focus-input100"></span>
                             <span class="symbol-input100">
@@ -99,9 +99,9 @@
                     </div>
                     <div class="col-sm-6">
                         <div class="container-login100-form-btn">
-                            <button class="cancel100-form-btn">
+                            <a class="cancel100-form-btn" href="{{ url('/') }}">
                                 Cancelar
-                            </button>
+                            </a>
                         </div>
                     </div>
                 </div>

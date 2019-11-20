@@ -12,70 +12,31 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
-        <section class="content-header">
-            <h1>
-                Edit convocatoria
-            </h1>
-            <ol class="breadcrumb">
-                <li>
-                    <a href="{{ route('admin.dashboard') }}"><i class="fa fa-dashboard"></i>Inicio</a>
-                </li>
-                <li class="active">Editar convocatoria</li>
-            </ol>
-        </section>
 
-        <section class="content">
-            <div class="box">
-                <div class="box-header with-border">
-                    <h3 class="box-title">&nbsp;</h3>
-                    <div class="box-tools pull-right">
+    <div class="animated fadeIn">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header">
+                        <i class="fa fa-edit"></i>Editar convocatoria</div>
+                    <div class="card-body">
+                        <form class="form-horizontal" action="{{ route('admin.announcements.update', $announcement->id) }}" method="POST">
+                            {{ method_field('PUT')}}
+                            {{ csrf_field() }}
 
-                        <button type="button" class="btn btn-box-tool" data-widget="collapse" data-toggle="tooltip" title="Collapse">
-                            <i class="fa fa-minus"></i>
-                        </button>
+                            @include('admin.announcements.form')
 
-                        <button type="button" class="btn btn-box-tool" data-widget="remove" data-toggle="tooltip" title="Remove">
-                            <i class="fa fa-times"></i>
-                        </button>
-
-                    </div>
-                </div>
-
-                <div class="box-body">
-                    <div class="row">
-                        <div class="col-md-10 col-md-offset-1">
-
-                            <form id="register-form" action="{{ route('admin.announcements.update', $announcement->id) }}" method="POST" class="validate-form form-horizontal" autocomplete="off">
-                                {{ method_field('PUT')}}
-                                {{ csrf_field() }}
-
-                                <div class="box-solid">
-                                    @include('admin.announcements.form')
-                                </div>
-
-                                <div class="box-footer text-center">
-                                    <div class="row">
-
-                                        <div class="col-md-6 col-xs-6">
-                                            <button class="login100-form-btn">
-                                                Actualizar
-                                            </button>
-                                        </div>
-
-                                        <div class="col-md-6 col-xs-6">
-                                            <a href="{{ route('admin.announcements.index')  }}" class="btn100-form">Cancelar</a>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </form>
-
-                        </div>
+                            <div class="form-actions text-center">
+                                <button class="btn btn-outline-primary" type="submit">Guardar</button>
+                                <a class="btn btn-outline-danger" href="{{ route('admin.announcements.index') }}">Cancelar</a>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-        </section>
+            <!-- /.col-->
+        </div>
+        <!-- /.row-->
     </div>
 
 @endsection

@@ -5,33 +5,24 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>{{ config('app.name', 'Meritos') }}  @yield('title')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 
-    <!-- Bootstrap 3.3.4 -->
-    <link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet" type="text/css" />
+    <title>{{ config('app.name', 'Meritos') }}  @yield('title')</title>
 
-    <link href="{{ asset('assets/css/font-awesome-4.6.1/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
-
-    <!-- Ionicons -->
-    <link href="{{ asset('assets/css/ionicons-2.0.1/ionicons-2.0.1/css/ionicons.min.css') }}" rel="stylesheet" type="text/css" />
-
-    <!-- Theme style -->
-    <link href="{{ asset('assets/css/AdminLTE.css') }}" rel="stylesheet" type="text/css" />
-
-    <link href="{{ asset('assets/css/skins/skin-blue.css') }}" rel="stylesheet" type="text/css" />
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link href="{{ asset('css/template.css') }}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css" />
 
     @yield('styles')
 
     <script src="{{ asset('js/app.js') }}" type="text/javascript"></script>
+
 </head>
 
-<body class="hold-transition skin-blue  sidebar-mini">
-    <div class="wrapper">
+<body class="app header-fixed sidebar-fixed aside-menu-fixed aside-menu-hidden">
 
-        @include('admin.layouts._navbar')
+    @include('admin.layouts._navbar')
 
+    <div class="app-body">
         @include('admin.layouts._sidebar')
 
         @if (Session::has('message'))
@@ -42,19 +33,28 @@
             </script>
         @endif
 
-        @yield('content')
+        <!-- Contenido Principal -->
+        <main class="main">
 
-        @include('partials.controlsidebar')
+            <!-- Breadcrumb -->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Home</li>
+                <li class="breadcrumb-item"><a href="#">Admin</a></li>
+                <li class="breadcrumb-item active">Dashboard</li>
+            </ol>
 
+            <div class="container-fluid">
+                @yield('content')
+            </div>
+        </main>
     </div>
 
-    <!-- jQuery 2.1.4 -->
-    <script src="{{ asset('assets/js/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
-    <!-- Bootstrap 3.3.2 JS -->
-    <script src="{{ asset('assets/js/bootstrap.min.js') }}" type="text/javascript"></script>
-    <!-- AdminLTE App -->
-    <script src="{{ asset('assets/js/app.min.js') }}" type="text/javascript"></script>
+    <footer class="app-footer">
+        <span><a href="#">CarlosVeizaga</a> &copy; 2019</span>
+        <span class="ml-auto">Desarrollado por <a href="#">CarlosVeizaga.JCVC@gmail.com</a></span>
+    </footer>
 
+    <script src="{{ asset('js/template.js') }}" type="text/javascript"></script>
     @yield('scripts')
 
 </body>

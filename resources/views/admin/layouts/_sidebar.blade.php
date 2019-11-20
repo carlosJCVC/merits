@@ -1,78 +1,57 @@
-<!-- Left side column. contains the logo and sidebar -->
-<aside class="main-sidebar">
-    <section class="sidebar">
-        <div class="user-panel">
-            <div class="pull-left image">
-                <img src="{{asset('assets/images/user2-160x160.jpg')}}" class="img-circle" alt="User Image" />
-            </div>
-            <div class="pull-left info">
-                <p>{{ Auth::user()->name }}</p>
-                <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
-            </div>
-        </div>
-
-        <!-- search form (Optional) -->
-        <form action="#" method="get" class="sidebar-form">
-            <div class="input-group">
-                <input type="text" name="q" class="form-control" placeholder="Search..."/>
-                <span class="input-group-btn">
-                <button type='submit' name='search' id='search-btn' class="btn btn-flat"><i class="fa fa-search"></i></button>
-              </span>
-            </div>
-        </form>
-        <!-- /.search form -->
-
-        <!-- Sidebar Menu -->
-        <ul class="sidebar-menu">
-            <li class="header">Menu</li>
-            <li class="active"><a href="{{ url('home') }}"><i class='fa fa-home'></i> <span>Home</span></a></li>
-            <li class="treeview">
-                <a href="#"><i class='fa fa-users'></i> <span>Usuarios</span><i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ url('admin/users') }}">Lista Usuarios</a></li>
-                    <li><a href="{{ url('admin/users/create') }}">Crear Usuario</a></li>
+<div class="sidebar">
+    <nav class="sidebar-nav">
+        <ul class="nav">
+            <li class="nav-item">
+                <a class="nav-link active" href="{{ route('admin.dashboard') }}"><i class="icon-speedometer"></i> Escritorio</a>
+            </li>
+            <li class="nav-title">
+                {{ Auth::user()->name }}
+            </li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-people"></i> Acceso</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.users.index') }}"><i class="icon-user"></i> Usuarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.roles.index') }}"><i class="icon-user-following"></i> Roles</a>
+                    </li>
                 </ul>
             </li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-lock'></i> <span>Roles</span><i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.roles.index') }}">Lista Roles</a></li>
-                    <li><a href="{{ route('admin.roles.create') }}">Crear Role</a></li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pie-chart"></i> Convocatorias</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.announcements.index') }}"><i class="icon-chart"></i> Lista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.announcements.create') }}"><i class="icon-chart"></i> Nuevo</a>
+                    </li>
                 </ul>
             </li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-lock'></i> <span>Convocatorias</span><i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.announcements.index') }}">Lista de convocatorias</a></li>
-                    <li><a href="{{ route('admin.announcements.create') }}">Crear Convocatoria</a></li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pie-chart"></i> Postulantes</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.postulants.index') }}"><i class="icon-chart"></i> Lista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.postulants.create') }}"><i class="icon-chart"></i> Nuevo</a>
+                    </li>
                 </ul>
             </li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-lock'></i> <span>Postulantes</span><i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.postulants.index') }}">Lista de postulantes</a></li>
+            <li class="nav-item nav-dropdown">
+                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pie-chart"></i> Areas</a>
+                <ul class="nav-dropdown-items">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.areas.index') }}"><i class="icon-chart"></i> Lista</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ route('admin.areas.create') }}"><i class="icon-chart"></i> Nuevo</a>
+                    </li>
                 </ul>
             </li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-lock'></i> <span>Areas</span><i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="{{ route('admin.areas.index') }}">Lista de areas</a></li>
-                    <li><a href="{{ route('admin.areas.create') }}">Crear area</a></li>
-                </ul>
-            </li>
-
-            <li class="treeview">
-                <a href="#"><i class='fa fa-link'></i> <span>Multilevel</span> <i class="fa fa-angle-left pull-right"></i></a>
-                <ul class="treeview-menu">
-                    <li><a href="#">Link in level 2</a></li>
-                    <li><a href="#">Link in level 2</a></li>
-                </ul>
-            </li>
-        </ul><!-- /.sidebar-menu -->
-    </section>
-    <!-- /.sidebar -->
-</aside>
+        </ul>
+    </nav>
+    <button class="sidebar-minimizer brand-minimizer" type="button"></button>
+</div>
