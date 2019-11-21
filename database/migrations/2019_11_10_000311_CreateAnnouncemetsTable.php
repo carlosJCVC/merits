@@ -17,6 +17,7 @@ class CreateAnnouncemetsTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->string('description')->unique();
+            $table->string('code');
             $table->date('start_date_announcement');
             $table->date('end_date_announcement');
             $table->date('start_date_calification');
@@ -56,6 +57,24 @@ class CreateAnnouncemetsTable extends Migration
                 ->on('announcements')
                 ->onDelete('cascade');
         });
+
+        Schema::create('announcement_user', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('user_id')->unsigned();
+            $table->integer('announcement_id')->unsigned();
+
+            $table->timestamps();
+
+            $table->foreign('user_id')
+                ->references('id')
+                ->on('users')
+                ->onDelete('cascade');
+
+            $table->foreign('announcement_id')
+                ->references('id')
+                ->on('announcements')
+                ->onDelete('cascade');
+        });
     }
 
     /**
@@ -65,6 +84,7 @@ class CreateAnnouncemetsTable extends Migration
      */
     public function down()
     {
+        Schema::dropIfExists('announcement_user');
         Schema::dropIfExists('announcement_area');
         Schema::dropIfExists('requirements');
         Schema::dropIfExists('announcements');

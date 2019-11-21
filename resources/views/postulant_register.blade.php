@@ -107,7 +107,7 @@
                 </div>
 
                 <div class="text-center p-t-25">
-                    <a class="txt2" href="{{ url('/login') }}">
+                    <a style="color: white" class="txt2" href="{{ url('/login') }}">
                         I already have a membership
                         <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
                     </a>

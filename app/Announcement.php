@@ -14,6 +14,7 @@ class Announcement extends Model
     protected $fillable = [
         'title',
         'description',
+        'code',
         'start_date_announcement',
         'end_date_announcement',
         'start_date_calification',
@@ -34,6 +35,14 @@ class Announcement extends Model
     public function requirements()
     {
         return $this->hasMany('App\Requirement');
+    }
+
+    /**
+     * The users that belong to the announcement.
+     */
+    public function users()
+    {
+        return $this->belongsToMany('App\User');
     }
 
 }

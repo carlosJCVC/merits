@@ -43,8 +43,8 @@
 
             <select class="form-control {{ $errors->has('required') ? 'is-invalid' : '' }}" name="required">
                 <option disabled hidden selected>Seleccione requisito</option>
-                <option value=true {{ ( isset($requirement) && $requirement->required == true) ? 'selected' : '' }}>INDISPENSABLE</option>
-                <option value=false {{ ( isset($requirement) && $requirement->required == false) ? 'selected' : '' }}>GENERAL</option>
+                <option value=1 {{ ( isset($requirement) && $requirement->required == true) ? 'selected' : '' }}>INDISPENSABLE</option>
+                <option value=0 {{ ( isset($requirement) && $requirement->required == false) ? 'selected' : '' }}>GENERAL</option>
             </select>
         </div>
 

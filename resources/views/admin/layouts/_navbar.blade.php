@@ -11,7 +11,7 @@
             <a class="nav-link" href="{{ route('admin.dashboard') }}">Escritorio</a>
         </li>
         <li class="nav-item px-3">
-            <a class="nav-link" href="#">Configuraciones</a>
+            <a class="nav-link" href="{{ route('home.announcements') }}" style="font-family: cursive; font-size: xx-large">Convocatorias</a>
         </li>
     </ul>
     <ul class="nav navbar-nav ml-auto">

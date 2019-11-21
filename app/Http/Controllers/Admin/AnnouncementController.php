@@ -7,8 +7,12 @@ use App\Area;
 use App\Http\Requests\AnnouncementRequest;
 use Carbon\Carbon;
 use Cassandra\Date;
+use http\Client\Response;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 use Illuminate\View\View;
 
 class AnnouncementController extends Controller
@@ -20,7 +24,13 @@ class AnnouncementController extends Controller
      */
     public function index()
     {
-        $announcements = Announcement::all();
+
+        $user = Auth::user();
+
+        $announcements = $user->announcements;
+
+        if ($user->hasRole('Admin'))
+            $announcements = Announcement::all();
 
         return view('admin.announcements.index', [ 'announcements' => $announcements ]);
     }
@@ -34,6 +44,10 @@ class AnnouncementController extends Controller
     {
         $areas = Area::all();
 
+        $announcements = DB::table('areas')->get();
+        if ($announcements->isEmpty())
+            return redirect(route('admin.areas.index'))->with([ 'message' => 'Para crear convocatoria debe tener areas disponibles!', 'alert-type' => 'info' ]);
+
         return view('admin.announcements.create', [ 'areas' => $areas]);
     }
 
@@ -45,11 +59,17 @@ class AnnouncementController extends Controller
      */
     public function store(AnnouncementRequest $request)
     {
+        $announcements = DB::table('areas')->get();
+        if ($announcements->isEmpty())
+            return redirect(route('admin.areas.index'))->with([ 'message' => 'Para crear convocatoria debe tener areas disponibles!', 'alert-type' => 'info' ]);
+
+
         $announcement = new Announcement($request->all());
         $announcement->start_date_announcement = new Carbon($request->start_date_announcement);
         $announcement->end_date_announcement = new Carbon($request->end_date_announcement);
         $announcement->start_date_calification = new Carbon($request->start_date_calification);
         $announcement->end_date_calification = new Carbon($request->end_date_calification);
+        $announcement->code = Str::random(6);
 
         $announcement->save();
 
@@ -61,14 +81,41 @@ class AnnouncementController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified code.
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Announcement $announcement)
     {
-        //
+        return response()->json($announcement);
+    }
+
+    /**
+     * Compare the specified code.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function compare(Request $request, Announcement $announcement)
+    {
+        if (!$request->code || !$announcement->exists()){
+            return response()->json([ 'message' => 'Error de datos enviados' ]);
+            //return redirect(route('home.announcements'))->with([ 'message' => 'Error!', 'alert-type' => 'info' ]);
+        }
+
+        if ($request->code != $announcement->code) {
+            return response()->json([ 'error' => 'El codigo no coincide', 'code' => 400 ]);
+            //return redirect(route('home.announcements'))->with([ 'message' => 'Codigo incorrecto!', 'alert-type' => 'info' ]);
+        }
+
+        $user = Auth::user();
+
+        $announcement->users()->attach($user);
+
+        return response()->json([ 'code' => 200, 'announcement' => $announcement]);
+
+        //return redirect(route('admin.announcements.index'))->with([ 'message' => 'Bienvenido a esta convocatoria!', 'alert-type' => 'info' ]);
     }
 
     /**
@@ -107,6 +154,21 @@ class AnnouncementController extends Controller
         $announcement->areas()->attach($areas);
 
         return redirect(route('admin.announcements.index'))->with([ 'message' => 'Convocatoria actualizado exitosamente!', 'alert-type' => 'info' ]);
+    }
+
+    /**
+     * Update the specified code in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateCode(Request $request, Announcement $announcement)
+    {
+        $announcement->code = $request->code;
+        $announcement->save();
+
+        return response()->json($announcement);
     }
 
     /**

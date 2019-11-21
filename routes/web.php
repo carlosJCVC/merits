@@ -109,61 +109,73 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', '
     Route::get('announcements', [
         'as' => 'announcements.index',
         'uses' => 'AnnouncementController@index',
+    ])->middleware('permission:list announcements');
+    Route::get('announcements/{announcement}/show', [
+        'as' => 'announcements.show',
+        'uses' => 'AnnouncementController@show',
+    ]);
+    Route::post('announcements/{announcement}/compare', [
+        'as' => 'announcements.compare',
+        'uses' => 'AnnouncementController@compare',
     ]);
     Route::get('announcements/create', [
         'as' => 'announcements.create',
         'uses' => 'AnnouncementController@create',
-    ]);
+    ])->middleware('permission:create announcements');
     Route::post('announcements/store', [
         'as' => 'announcements.store',
         'uses' => 'AnnouncementController@store',
-    ]);
-    Route::get('announcements/{role}/edit', [
+    ])->middleware('permission:create announcements');
+    Route::get('announcements/{announcement}/edit', [
         'as' => 'announcements.edit',
         'uses' => 'AnnouncementController@edit',
-    ]);
-    Route::put('announcements/{role}', [
+    ])->middleware('permission:edit announcements');
+    Route::put('announcements/{announcement}', [
         'as' => 'announcements.update',
         'uses' => 'AnnouncementController@update',
+    ])->middleware('permission:edit announcements');
+    Route::put('announcements/{announcement}/update_code', [
+        'as' => 'announcements.code',
+        'uses' => 'AnnouncementController@updateCode',
     ]);
-    Route::patch('announcements/{role}', [
+    Route::patch('announcements/{announcement}', [
         'as' => 'announcements.update',
         'uses' => 'AnnouncementController@update',
-    ]);
-    Route::delete('announcements/{role}', [
+    ])->middleware('permission:edit announcements');
+    Route::delete('announcements/{announcement}', [
         'as' => 'announcements.destroy',
         'uses' => 'AnnouncementController@destroy',
-    ]);
+    ])->middleware('permission:delete announcements');
 
     //------------ Postulants --------------//
     Route::get('postulants', [
         'as' => 'postulants.index',
         'uses' => 'PostulantController@index',
-    ]);
+    ])->middleware('permission:list postulants');
     Route::get('postulants/create', [
         'as' => 'postulants.create',
         'uses' => 'PostulantController@create',
-    ]);
+    ])->middleware('permission:create postulants');
     Route::post('postulants/store', [
         'as' => 'postulants.store',
         'uses' => 'PostulantController@store',
-    ]);
-    Route::get('postulants/{role}/edit', [
+    ])->middleware('permission:create postulants');
+    Route::get('postulants/{postulant}/edit', [
         'as' => 'postulants.edit',
         'uses' => 'PostulantController@edit',
-    ]);
-    Route::put('postulants/{role}', [
+    ])->middleware('permission:edit postulants');
+    Route::put('postulants/{postulant}', [
         'as' => 'postulants.update',
         'uses' => 'PostulantController@update',
-    ]);
-    Route::patch('postulants/{role}', [
+    ])->middleware('permission:edit postulants');
+    Route::patch('postulants/{postulant}', [
         'as' => 'postulants.update',
         'uses' => 'PostulantController@update',
-    ]);
-    Route::delete('postulants/{role}', [
+    ])->middleware('permission:edit postulants');
+    Route::delete('postulants/{postulant}', [
         'as' => 'postulants.destroy',
         'uses' => 'PostulantController@destroy',
-    ]);
+    ])->middleware('permission:delete postulants');
 
     //-------------- AREAS ------------------//
     Route::get('areas', [

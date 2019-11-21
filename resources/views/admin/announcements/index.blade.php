@@ -41,6 +41,9 @@
                             <a class="btn btn-success" href="{{ route('admin.requirements.index', $announcement->id) }}">
                                 <i class="fa fa-edit"></i> Requerimientos
                             </a>
+                            <a class="btn btn-info" href="#" onclick="show_code('{{ $announcement->code  }}');">
+                                <i class="fa fa-lock"></i>
+                            </a>
                             <form action="{{ route('admin.announcements.destroy', $announcement->id) }}"
                                   style="display:inline-block;"
                                   method="POST">
@@ -61,4 +64,111 @@
         </div>
     </div>
 
+@endsection
+
+@section('scripts')
+    <script>
+        const show_code = (code) => {
+            swalWithBootstrapButtons.fire({
+                title: 'Que quieres realizar ?',
+                text: "Cambiar el codigo no es recomendable!",
+                icon: 'info',
+                showCancelButton: true,
+                confirmButtonText: 'Ver Codigo!',
+                cancelButtonText: 'Cambiar, Codigo!',
+                reverseButtons: true
+            }).then((result) => {
+                if (result.value) {
+                    showCode()
+                } else if (
+                    /* Read more about handling dismissals below */
+                    result.dismiss === Swal.DismissReason.cancel
+                ) {
+                    changePassword()
+                }
+            })
+
+        }
+
+        const swalWithBootstrapButtons = Swal.mixin({
+            customClass: {
+                confirmButton: 'btn btn-outline-success',
+                cancelButton: 'btn btn-outline-danger'
+            },
+            buttonsStyling: false
+        })
+
+        const showCode = () => {
+            return fetch(`{{ route('admin.announcements.show', [ 'id' => 1 ] ) }}`, {
+                method: 'GET',
+                //body: new URLSearchParams({code: text}),
+                headers: new Headers({
+                    'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }),
+            }).then(async response => {
+                if (!response.ok) {
+                    throw new Error(response.statusText)
+                }
+
+                let res = await response.json()
+
+                swalWithBootstrapButtons.fire(
+                    `Codigo => ${ res.code }`,
+                    'Codigo para realizar postulacion.',
+                    'success'
+                )
+            })
+        }
+
+
+
+        const changePassword = () => {
+            Swal.fire({
+                title: 'Cambiar codigo',
+                html: `<h2 style='font-family: cursive'><strong>Ingrese el nuevo codigo</strong></2>.`,
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Cambiar',
+                showLoaderOnConfirm: true,
+                preConfirm: (text) => {
+                    return fetch(`{{ route('admin.announcements.code', [ 'id' => 1 ] ) }}`, {
+                        method: 'PUT',
+                        body: new URLSearchParams({code: text}),
+                        headers: new Headers({
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }),
+                    }).then(response => {
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                    }).catch(error => {
+                        if (error.message == 'Bad Request') {
+                            Swal.showValidationMessage(
+                                `El campo de texto no puede estar vacio.`
+                            )
+                        } else {
+                            Swal.showValidationMessage(
+                                `Request failed: ${error}`
+                            )
+                        }
+                    });
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then((result) => {
+                if (result.value) {
+                    Swal.fire({
+                        title: `Codigo cambiado con exito`,
+                        imageUrl: 'https://fotos01.diarioinformacion.com/mmp/2018/11/18/690x278/inteligenciartificial.jpg'
+                    })
+                }
+            })
+        }
+
+    </script>
 @endsection

@@ -125,7 +125,11 @@
                             <li><a href="#announcements">Ultimas Convocatorias</a></li>
                             <li><a href="{{ url('/announcements') }}">Convocatorias</a></li>
                             <li><a href="#contact">Contactar</a></li>
-                            <li><a href="{{ url('/login') }}">Login</a></li>
+                            @if(!Auth::check())
+                                <li><a href="{{ url('/login') }}">Login</a></li>
+                            @else
+                                <li><a href="{{ route('admin.dashboard') }}">Home</a></li>
+                            @endif
                             {{-- <li><a href="{{ url('/register') }}">Registrarse</a></li> --}}
                         </ul>
                     </div>

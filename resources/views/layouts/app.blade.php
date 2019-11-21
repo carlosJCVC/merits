@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <title>FCYT</title>
 
@@ -11,6 +12,8 @@
     <link href="{{ asset('css/app.css') }}" rel="stylesheet" type="text/css">
 
     @yield('styles')
+
+    <script src="{{ asset('js/app.js') }}"></script>
 </head>
 <body id="app-layout">
 
@@ -42,8 +45,10 @@
                             <li class="nav-item"><a class="nav-link" href="#features">Caracteristicas</a></li>
                             <li class="nav-item"><a class="nav-link" href="#announcements">Convocatorias</a></li>
                             <li class="nav-item"><a class="nav-link" href="#contact">Contactar</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ url('/register') }}">Registrarse</a></li>
+                            @if(!Auth::check())
+                                <li class="nav-item"><a class="nav-link" href="{{ url('/login') }}">Login</a></li>
+                                <li class="nav-item"><a class="nav-link" href="{{ url('/register') }}">Registrarse</a></li>
+                            @endif
                         </ul>
                     </div>
                     <!-- /.navbar-collapse -->

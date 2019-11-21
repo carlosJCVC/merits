@@ -27,4 +27,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * The announcements that belong to the user.
+     */
+    public function announcements()
+    {
+        return $this->belongsToMany('App\Announcement');
+    }
 }

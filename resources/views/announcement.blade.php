@@ -42,7 +42,12 @@
                 </div>
 
                 <div class="modal-footer">
-                    <a class="btn btn-secondary btn-block" href="{{ route('postulans.create') }}">POSTULARSE</a>
+                    @if(Auth::check())
+                        <a class="btn btn-secondary btn-block" onclick="insertCode(event)">POSTULARSE</a>
+                        <input type="hidden" id="id_announcement" value="">
+                    @else
+                        <a class="btn btn-secondary btn-block" href="{{ route('postulans.create') }}">REGISTRARSE</a>
+                    @endif
                 </div>
 
 
@@ -60,6 +65,8 @@
         let content = $("#announcement_content")
         let list_requirements = $("#list_requirements_required")
         let list_extra = $("#list_requirements")
+        let anouncement_modal = $("#announcement")
+        let anouncement_id = $("#id_announcement")
 
         const show_announcement = (announcement, requeriments) => {
             clear()
@@ -74,7 +81,9 @@
             content.html("<b class='text-center'>" + announcement.description + "</b>")
             list_requirements.html()
 
-            $("#announcement").modal()
+            anouncement_id.val(announcement.id)
+
+            anouncement_modal.modal()
         };
 
         const clear = () => {
@@ -82,6 +91,52 @@
             content.html('')
             list_requirements.html('')
             list_extra.html('')
+        }
+
+        const insertCode = (e) => {
+            anouncement_modal.modal('hide')
+
+            Swal.fire({
+                title: 'Postulate',
+                html: `<h2 style='font-family: cursive'><strong>Ingrese codigo de postulacion</strong></2>.`,
+                input: 'text',
+                inputAttributes: {
+                    autocapitalize: 'off'
+                },
+                showCancelButton: true,
+                confirmButtonText: 'Entrar',
+                showLoaderOnConfirm: true,
+                preConfirm: (text) => {
+                    // TODO cambiar la ur cuando se pone en produccion
+                    return fetch(`http://localhost:8000/admin/announcements/${anouncement_id.val()}/compare`, {
+                        method: 'POST',
+                        body: new URLSearchParams({code: text}),
+                        headers: new Headers({
+                            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                        }),
+                    }).then(response => {
+                        console.log('response')
+                        if (!response.ok) {
+                            throw new Error(response.statusText)
+                        }
+                        return response.json()
+                    })
+                },
+                allowOutsideClick: () => !Swal.isLoading()
+            }).then(({ value }) => {
+                const { error, code } = value
+
+                if ( code == 400) {
+                    toastr.error(error)
+                }
+
+                if ( code == 200 ) {
+                    location.replace('{{ route('admin.announcements.index') }}')
+                    toastr.success('codigo correcto')
+                }
+            })
+
         }
     </script>
 @endsection
