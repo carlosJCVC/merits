@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Announcement extends Model
 {
@@ -35,6 +36,26 @@ class Announcement extends Model
     public function requirements()
     {
         return $this->hasMany('App\Requirement');
+    }
+
+    /**
+     * Get the requirements required.
+     */
+    public function requiredRequirements()
+    {
+        $announcement = $this;
+
+        return DB::table('requirements')->where('announcement_id', $announcement->id)->where('required', 1)->get();
+    }
+
+    /**
+     * Get the requirements general.
+     */
+    public function generalRequirements()
+    {
+        $announcement = $this;
+
+        return DB::table('requirements')->where('announcement_id', $announcement->id)->where('required', 0)->get();
     }
 
     /**

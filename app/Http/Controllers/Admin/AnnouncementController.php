@@ -172,6 +172,20 @@ class AnnouncementController extends Controller
     }
 
     /**
+     * view the specified requirements in announcement.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function requirement(Announcement $announcement)
+    {
+        return view('admin.announcements.requirements.requirement_postulant',
+            [ 'announcements' => $announcement ]
+        );
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id

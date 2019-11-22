@@ -142,6 +142,12 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', '
         'as' => 'announcements.update',
         'uses' => 'AnnouncementController@update',
     ])->middleware('permission:edit announcements');
+
+    Route::get('announcements/{announcement}/files', [
+        'as' => 'requirements.files',
+        'uses' => 'AnnouncementController@requirement',
+    ]);
+
     Route::delete('announcements/{announcement}', [
         'as' => 'announcements.destroy',
         'uses' => 'AnnouncementController@destroy',

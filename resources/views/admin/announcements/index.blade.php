@@ -41,6 +41,9 @@
                             <a class="btn btn-success" href="{{ route('admin.requirements.index', $announcement->id) }}">
                                 <i class="fa fa-edit"></i> Requerimientos
                             </a>
+                            <a class="btn btn-outline-primary" href="{{ route('admin.requirements.files', $announcement->id) }}">
+                                <i class="fa fa-upload"></i> subir
+                            </a>
                             <a class="btn btn-info" href="#" onclick="show_code('{{ $announcement->code  }}');">
                                 <i class="fa fa-lock"></i>
                             </a>
