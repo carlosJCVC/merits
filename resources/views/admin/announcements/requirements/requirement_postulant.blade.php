@@ -6,7 +6,7 @@
 
 
 @section('content')
-    <div class="card">
+    <div class="card" style="height: 100vh">
         <div class="card-header text-center title-panel">PANEL DE CONTROL</div>
         <div class="card-body" style="background-image: url('{{ asset('images/adinfondo.jpg') }}'); background-size: cover; background-repeat: no-repeat">
             <div class="row">

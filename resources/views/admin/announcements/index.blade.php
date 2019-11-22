@@ -10,9 +10,11 @@
     <div class="card">
         <div class="card-header">
             <i class="fa fa-align-justify"></i> Convocatorias
+            @can('create announcements')
             <a class="btn btn-secondary" href="{{ route('admin.announcements.create') }}">
                 <i class="icon-plus"></i>&nbsp;Nuevo
             </a>
+            @endcan
         </div>
         <div class="card-body">
             <table class="table table-bordered table-striped table-sm">
@@ -35,18 +37,25 @@
                         <td>{{ $announcement->start_date_calification }}</td>
                         <td>{{ $announcement->end_date_calification }}</td>
                         <td>
+                            @can('edit announcements')
                             <a class="btn btn-warning btn-sm" href="{{ route('admin.announcements.edit', $announcement->id) }}">
                                 <i class="icon-pencil"></i>
-                            </a> &nbsp;
+                            </a>
+                            @endcan
+                            @can('list requirements')
                             <a class="btn btn-success" href="{{ route('admin.requirements.index', $announcement->id) }}">
                                 <i class="fa fa-edit"></i> Requerimientos
                             </a>
+                                @endcan
                             <a class="btn btn-outline-primary" href="{{ route('admin.requirements.files', $announcement->id) }}">
                                 <i class="fa fa-upload"></i> subir
                             </a>
+                                @can('edit announcements')
                             <a class="btn btn-info" href="#" onclick="show_code('{{ $announcement->code  }}');">
                                 <i class="fa fa-lock"></i>
                             </a>
+                                @endcan
+                                @can('delete announcements')
                             <form action="{{ route('admin.announcements.destroy', $announcement->id) }}"
                                   style="display:inline-block;"
                                   method="POST">
@@ -59,7 +68,7 @@
                                     <i class="icon-trash"></i>
                                 </button>
                             </form>
-
+                            @endcan
                         </td>
                 @endforeach
                 </tbody>
