@@ -1,5 +1,6 @@
 
 window._ = require('lodash');
+window.FilePond = require('filepond');
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support

@@ -6,8 +6,8 @@
         </label>
         <span> {{ $requirement->description }}</span>
         <div class="pull-right">
-            <a href="" class="btn btn-outline-success">Subir</a>
-            <a href="" class="btn btn-outline-primary">Cambiar</a>
+            <a href="#" class="btn btn-outline-success" onclick="show_form()">Subir</a>
+            <a href="#" class="btn btn-outline-primary">Cambiar</a>
         </div>
     </div>
 @empty

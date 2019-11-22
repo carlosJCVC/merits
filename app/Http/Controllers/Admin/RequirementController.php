@@ -3,10 +3,13 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Announcement;
+use App\File;
+use App\Http\Requests\FileRequest;
 use App\Http\Requests\RequerimentRequest;
 use App\Requirement;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class RequirementController extends Controller

@@ -12,4 +12,12 @@ class Requirement extends Model
      * @var array
      */
     protected $fillable = [ 'title', 'description', 'announcement_id', 'required' ];
+
+    /**
+     * Get the file record associated with the requirement.
+     */
+    public function file()
+    {
+        return $this->hasOne('App\File');
+    }
 }

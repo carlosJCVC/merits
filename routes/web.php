@@ -273,4 +273,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', '
         'uses' => 'RequirementController@destroy',
     ])->middleware('permission:delete requirements');
 
+    // FILES //
+    Route::post('{announcement}/requirements/{requirement}/upload', [
+        'as' => 'requirements.upload',
+        'uses' => 'FileController@upload',
+    ]);
+    Route::get('{announcement}/requirements/{requirement}/file', [
+        'as' => 'requirements.file',
+        'uses' => 'FileController@getRequirementFile',
+    ]);
 });

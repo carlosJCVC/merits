@@ -39,6 +39,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Get the files for the user.
+     */
+    public function files()
+    {
+        return $this->hasMany('App\File');
+    }
+
+    /**
      * The announcements that belong to the user.
      */
     public function getMyAnnouncements()
