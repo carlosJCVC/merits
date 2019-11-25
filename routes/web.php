@@ -154,31 +154,39 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', '
     ])->middleware('permission:delete announcements');
 
     //------------ Postulants --------------//
-    Route::get('postulants', [
+    Route::get('{announcement}/postulants', [
         'as' => 'postulants.index',
         'uses' => 'PostulantController@index',
     ])->middleware('permission:list postulants');
-    Route::get('postulants/create', [
+    Route::get('announcements/{announcement}/postulants/{postulant}/files', [
+        'as' => 'postulants.show',
+        'uses' => 'PostulantController@show',
+    ]);
+    Route::get('{announcement}/postulants/create', [
         'as' => 'postulants.create',
         'uses' => 'PostulantController@create',
     ])->middleware('permission:create postulants');
-    Route::post('postulants/store', [
+    Route::get('{announcement}/postulants/{postulant}/requirement/{requirement}/checked', [
+        'as' => 'postulants.checkedFile',
+        'uses' => 'PostulantController@checked',
+    ]);
+    Route::post('{announcement}/postulants/store', [
         'as' => 'postulants.store',
         'uses' => 'PostulantController@store',
     ])->middleware('permission:create postulants');
-    Route::get('postulants/{postulant}/edit', [
+    Route::get('{announcement}/postulants/{postulant}/edit', [
         'as' => 'postulants.edit',
         'uses' => 'PostulantController@edit',
     ])->middleware('permission:edit postulants');
-    Route::put('postulants/{postulant}', [
+    Route::put('{announcement}/postulants/{postulant}', [
         'as' => 'postulants.update',
         'uses' => 'PostulantController@update',
     ])->middleware('permission:edit postulants');
-    Route::patch('postulants/{postulant}', [
+    Route::patch('{announcement}/postulants/{postulant}', [
         'as' => 'postulants.update',
         'uses' => 'PostulantController@update',
     ])->middleware('permission:edit postulants');
-    Route::delete('postulants/{postulant}', [
+    Route::delete('{announcement}/postulants/{postulant}', [
         'as' => 'postulants.destroy',
         'uses' => 'PostulantController@destroy',
     ])->middleware('permission:delete postulants');
@@ -281,5 +289,9 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth'], 'as' => 'admin.', '
     Route::get('{announcement}/requirements/{requirement}/file', [
         'as' => 'requirements.file',
         'uses' => 'FileController@getRequirementFile',
+    ]);
+    Route::delete('{announcement}/requirements/{requirement}/delete_file', [
+        'as' => 'requirements.file_delete',
+        'uses' => 'FileController@deleteRequirementFile',
     ]);
 });

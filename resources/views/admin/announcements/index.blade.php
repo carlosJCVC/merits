@@ -47,9 +47,16 @@
                                 <i class="fa fa-edit"></i> Requerimientos
                             </a>
                                 @endcan
-                            <a class="btn btn-outline-primary" href="{{ route('admin.requirements.files', $announcement->id) }}">
+                            @if(Auth::user()->hasRole(['Admin', 'Postulante']))
+                                <a class="btn btn-outline-primary" href="{{ route('admin.requirements.files', $announcement->id) }}">
                                 <i class="fa fa-upload"></i> subir
                             </a>
+                                @endif
+                                @if(Auth::user()->hasRole(['Calificador', 'Validador']))
+                                    <a class="btn btn-outline-primary" href="{{ route('admin.postulants.index', $announcement->id) }}">
+                                        <i class="fa fa-user"></i> Postulantes
+                                    </a>
+                                @endif
                                 @can('edit announcements')
                             <a class="btn btn-info" href="#" onclick="show_code('{{ $announcement->code  }}');">
                                 <i class="fa fa-lock"></i>

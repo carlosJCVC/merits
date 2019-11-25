@@ -19,6 +19,7 @@ class CreateFilesTable extends Migration
             $table->string('realname');
             $table->integer('user_id')->unsigned();
             $table->integer('requirement_id')->unsigned();
+            $table->boolean('checked');
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('requirement_id')->references('id')->on('requirements')->onDelete('cascade');

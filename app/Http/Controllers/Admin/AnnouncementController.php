@@ -29,7 +29,7 @@ class AnnouncementController extends Controller
 
         $announcements = $user->announcements;
 
-        if ($user->hasRole('Admin'))
+        if ($user->hasRole(['Admin', 'Calificador']))
             $announcements = Announcement::all();
 
         return view('admin.announcements.index', [ 'announcements' => $announcements ]);
@@ -181,7 +181,7 @@ class AnnouncementController extends Controller
     public function requirement(Announcement $announcement)
     {
         return view('admin.announcements.requirements.requirement_postulant',
-            [ 'announcements' => $announcement ]
+            [ 'announcement' => $announcement ]
         );
     }
 

@@ -45,7 +45,7 @@ class Announcement extends Model
     {
         $announcement = $this;
 
-        return DB::table('requirements')->where('announcement_id', $announcement->id)->where('required', 1)->get();
+        return Requirement::where('announcement_id', $announcement->id)->where('required', 1)->get();
     }
 
     /**
@@ -55,13 +55,13 @@ class Announcement extends Model
     {
         $announcement = $this;
 
-        return DB::table('requirements')->where('announcement_id', $announcement->id)->where('required', 0)->get();
+        return Requirement::where('announcement_id', $announcement->id)->where('required', 0)->get();
     }
 
     /**
      * The users that belong to the announcement.
      */
-    public function users()
+    public function postulants()
     {
         return $this->belongsToMany('App\User');
     }

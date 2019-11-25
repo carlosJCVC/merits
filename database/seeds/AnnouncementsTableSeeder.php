@@ -51,6 +51,15 @@ class AnnouncementsTableSeeder extends Seeder
                 'start_date_calification' => \Carbon\Carbon::now(),
                 'end_date_calification' => \Carbon\Carbon::now(),
             ],
+            [
+                'title' => 'EXPERTO EN .NET',
+                'description' => 'Se requiere para la empresa un experto en el area de base de datos el cual seran puestos en un concursos de meritos a traves de sitido ',
+                'code' => '123454',
+                'start_date_announcement' => \Carbon\Carbon::now(),
+                'end_date_announcement' => \Carbon\Carbon::now(),
+                'start_date_calification' => \Carbon\Carbon::now(),
+                'end_date_calification' => \Carbon\Carbon::now(),
+            ],
         ];
 
         $areas = Area::find([1, 2, 3, 4]);
@@ -61,7 +70,7 @@ class AnnouncementsTableSeeder extends Seeder
             $announ->save();
 
             $announ->areas()->attach($areas);
-            $announ->users()->attach($user);
+            $announ->postulants()->attach($user);
         }
     }
 }

@@ -24,12 +24,21 @@ class UsersTableSeeder extends Seeder
                 'remember_token' => '',
             ],
             [
-                'name' => 'Carlos',
-                'lastname' => 'Veizaga',
+                'name' => 'calificador',
+                'lastname' => 'calificador',
                 'phone' => '54564646',
                 'gender' => 'M',
-                'email' => 'carlos@carlos.com',
-                'password' => bcrypt('admin'),
+                'email' => 'calificador@gmail.com',
+                'password' => bcrypt('calificador'),
+                'remember_token' => '',
+            ],
+            [
+                'name' => 'postulante',
+                'lastname' => 'postulante',
+                'phone' => '54564646',
+                'gender' => 'M',
+                'email' => 'postulante@gmail.com',
+                'password' => bcrypt('postulante'),
                 'remember_token' => '',
             ],
         ];
@@ -39,10 +48,10 @@ class UsersTableSeeder extends Seeder
 
             if ($user->name == 'Administrator') {
                 $user->assignRole(['Admin']);
-            } elseif ($user->name == 'Carlos') {
-                $user->assignRole(['Validador']);
-            } else {
+            } elseif ($user->name == 'calificador') {
                 $user->assignRole(['Calificador']);
+            } else {
+                $user->assignRole(['Postulante']);
             }
         }
     }

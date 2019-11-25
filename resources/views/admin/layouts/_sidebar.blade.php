@@ -43,24 +43,6 @@
             </li>
             @endif
 
-            @if(Auth::user()->checkPermissions('or', ['list postulants', 'create postulants']))
-            <li class="nav-item nav-dropdown">
-                <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pie-chart"></i> Postulantes</a>
-                <ul class="nav-dropdown-items">
-                    @can('list postulants')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.postulants.index') }}"><i class="icon-chart"></i> Lista</a>
-                    </li>
-                    @endcan
-                    @can('create postulants')
-                    <li class="nav-item">
-                        <a class="nav-link" href="{{ route('admin.postulants.create') }}"><i class="icon-chart"></i> Nuevo</a>
-                    </li>
-                        @endcan
-                </ul>
-            </li>
-            @endif
-
             @if(Auth::user()->checkPermissions('or', ['list areas', 'create areas']))
             <li class="nav-item nav-dropdown">
                 <a class="nav-link nav-dropdown-toggle" href="#"><i class="icon-pie-chart"></i> Areas</a>

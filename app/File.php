@@ -9,7 +9,7 @@ class File extends Model
     const DIRECTORY = 'announcements';
     const PATH_STORE = self::DIRECTORY;
 
-    protected $fillable = ['name', 'path', 'realname'];
+    protected $fillable = ['name', 'path', 'realname', 'checked'];
 
     /**
      * Get the user that owns the file.

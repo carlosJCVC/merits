@@ -38,14 +38,32 @@ class PermissionsTableSeeder extends Seeder
             [ 'name' => 'create requirements' ],
             [ 'name' => 'edit requirements' ],
             [ 'name' => 'delete requirements' ],
+
+            [ 'name' => 'list postulants' ],
+            [ 'name' => 'create postulants' ],
+            [ 'name' => 'edit postulants' ],
+            [ 'name' => 'delete postulants' ],
         ];
 
         $admin = Role::find(1);
+        $validator = Role::find(2);
+        $calificador = Role::find(3);
+        $postulante = Role::find(4);
 
         foreach ($permissions as $permission) {
             Permission::create($permission);
             $admin->givePermissionTo($permission);
         }
+
+        $calificador->givePermissionTo([
+            'list postulants',
+            'list announcements',
+        ]);
+
+        $postulante->givePermissionTo([
+            //'list postulants',
+            'list announcements',
+        ]);
 
     }
 }

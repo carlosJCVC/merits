@@ -22,10 +22,10 @@
                     <div class="card">
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                                @include('admin.announcements.requirements.partials.list', [ 'items' => $announcements->requiredRequirements() ])
+                                @include('admin.announcements.requirements.partials.list', [ 'announcement' => $announcement,'items' => $announcement->requiredRequirements() ])
                             </div>
                             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
-                                @include('admin.announcements.requirements.partials.list', [ 'items' => $announcements->generalRequirements() ])
+                                @include('admin.announcements.requirements.partials.list', [ 'announcement' => $announcement, 'items' => $announcement->generalRequirements() ])
                             </div>
                             <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">
                                 CHAT
@@ -53,14 +53,36 @@
 
                 <div class="modal-body">
                     <div class="container">
-                        <input type="file"
-                               class="filepond"
-                               name="file"
-                               data-allow-image-preview="false"
-                               data-instant-upload="false"
-                               data-max-file-size="3MB"
-                               multiple="false">
+                        <form action="#" id="uploadFileRequirement" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+
+                            <input type="file" name="file" class="form-control" multiple="false">
+                            <div class="form-actions text-center mt-4">
+                                <button type="button" class="btn btn-outline-primary mb-4" onclick="upload(event);">Subir</button>
+                            </div>
+                        </form>
                     </div>
+
+                    <table id="table_file" class="table table-bordered table-striped table-sm">
+                        <thead>
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Fecha enviada</th>
+                                <th>Opciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td id="title_file"></td>
+                                <td id="created_date_file"></td>
+                                <td>
+                                    <a class="btn btn-danger btn-sm" id="delete_file">
+                                        <i class="icon-trash"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
 
                 <div class="modal-footer">
@@ -75,114 +97,61 @@
 @section('scripts')
     <script>
         let anouncement_modal = $("#requirement_file")
+        let title_file = $("#title_file")
+        let created_file = $("#created_date_file")
+        var url_form ;
 
-        const show_form = () => {
-            anouncement_modal.modal()
+        const show_form = (file, url) => {
+            url_form = url
+            if (!file) {
+                $('#table_file').hide();
+                anouncement_modal.modal()
+            } else {
+                title_file.html(`<a target="_blank" href="{{ asset('assets/') }}/${file.path}">${file.realname}</a>`)
+                created_file.html(file.created_at)
+                $('#table_file').show();
+                anouncement_modal.modal()
+            }
+
         }
 
-        var url = '{{ route('admin.requirements.file', [ 'announcement' => 1, 'requirement' => 1 ]) }}?file=';
+        const upload = (e) => {
+            e.preventDefault();
+            $('#uploadFileRequirement').attr('action', url_form).submit();
+        }
 
-        const inputElement = document.querySelector('input[type="file"]');
-        const pond = FilePond.create( inputElement, {
-            server: {
-                //process: './ssss',
-                load: (source, load, error, progress, abort, headers) => {
-                    error('oh my goodness');
-                    progress(false, 0, 1024);
-
-                    const data = { name: 'world.text' };
-                    const blob = new Blob([JSON.stringify(data, null, 2)], {
-                        type: 'application/json'
-                    });
-
-
-
-                    var file = new File(['foo', 'bar'], 'foobar.txt');
-
-                    load(file);
-
-                    return {
-                        abort: () => {
-                            abort();
-                        }
-                    };
-                },
-                //revert: './hhhhhhh',
-                //restore: null
-            },
-            files: [{
-                source: '1',
-                options: {
-                    type: 'local',
-                    //file: {
-                    //    name: 'ggg.jpeg'
-                    //}
-                }
-            }]
-        } )
-
-    </script>
-    {{--
-    <script>
-        const pond = document.querySelector('.filepond--root');
-        pond.addEventListener('FilePond:addfile', e => {
-            console.log('File added', e.detail);
-        });
-
-
-        // override default options
-        FilePond.setOptions({
-            dropOnPage: true,
-            dropOnElement: true,
-        });
-        const data = { hello: 'world' };
-        const blob = new Blob([JSON.stringify(data, null, 2)], {
-            type: 'application/json'
-        });
-
-        const inputElement = document.querySelector('input[type="file"]');
-        const pond = FilePond.create( inputElement, {
-            server: {
-                url: '{{ route('admin.requirements.upload', [ 'announcement' => 1, 'requirement' => 1 ]) }}',
+        $('#delete_file').click(function(){
+            $.ajax({
+                method: "DELETE",
+                url: "{{ route('admin.requirements.file_delete', [ 'announcement' => 1, 'requirement' => 1 ]) }}",
                 headers: {
-                    //'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                load: () => {
-                    alert()
-                },
-                fetch: 'getFile'
-            },
-            files: [{
-                source: '12345',
-                options: {
-                    type: 'local',
-                    file: {
-                        name: 'carlos.jpeg'
-                    }
                 }
-            }],
-            onprocessfile: (blob) => { alert('finished') },
-            labelFileProcessingComplete: 'completado',
-            labelIdle: 'Arratra y suelta tu archivo',
-            imagePreviewHeight: 170,
-            imageCropAspectRatio: '1:1',
-            imageResizeTargetWidth: 200,
-            imageResizeTargetHeight: 200,
-        } );
+            }).done(function() {
+                location.reload(true);
+                toastr.error('archivo eliminado')
+            });
+        })
 
-        let anouncement_modal = $("#requirement_file")
+        {{--
+        fetch(`{{ route('admin.requirements.file', [ 'announcement' => 1, 'requirement' => 1 ] ) }}`, {
+            method: 'GET',
+            //body: new URLSearchParams({code: text}),
+            headers: new Headers({
+                'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }),
+        }).then(async response => {
+            if (!response.ok) {
+                throw new Error(response.statusText)
+            }
 
-        const show_form = () => {
-            anouncement_modal.modal()
-        }
-
-        const clear = () => {
-            title.html('')
-            content.html('')
-            list_requirements.html('')
-            list_extra.html('')
-        }
+            let res = await response.json()
+            console.log(res)
+            if(res.code == 404) {
+                alert()
+            }
+        })
+        --}}
     </script>
-    --}}
 @endsection
