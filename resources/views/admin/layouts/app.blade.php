@@ -49,9 +49,10 @@
         </main>
     </div>
 
+
     <footer class="app-footer">
-        <span><a href="#">CarlosVeizaga</a> &copy; 2019</span>
-        <span class="ml-auto">Desarrollado por <a href="#">CarlosVeizaga.JCVC@gmail.com</a></span>
+        <span><a href="#">UMSS</a> &copy; 2019</span>
+        <span class="ml-auto">Desarrollado por <a href="#">umss@gmail.com</a></span>
     </footer>
 
     <script src="{{ asset('js/template.js') }}" type="text/javascript"></script>
