@@ -4,13 +4,6 @@
     Usuario
 @endsection
 
-@section('styles')
-    <link href="{{ asset('assets/css/font-awesome-4.6.1/css/font-awesome.min.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/util.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/main.css') }}" rel="stylesheet" type="text/css" />
-    <link href="{{ asset('assets/css/animate.css') }}" rel="stylesheet" type="text/css" />
-@endsection
-
 @section('content')
     <div class="animated fadeIn">
         <div class="row">
@@ -41,11 +34,9 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2({
-                placeholder: "Seleccione un valor",
-                allowClear: true
-            });
+        $('.js-example-basic-multiple').select2({
+            placeholder: "Seleccione un valor",
+            allowClear: true
         });
     </script>
 @endsection

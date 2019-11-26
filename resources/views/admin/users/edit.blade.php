@@ -47,11 +47,9 @@
 
 @section('scripts')
     <script>
-        $(document).ready(function() {
-            $('.js-example-basic-multiple').select2({
+        $('.js-example-basic-multiple').select2({
                 placeholder: "Seleccione un valor",
                 allowClear: true
             });
-        });
     </script>
 @endsection
