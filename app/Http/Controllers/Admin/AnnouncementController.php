@@ -111,7 +111,7 @@ class AnnouncementController extends Controller
 
         $user = Auth::user();
 
-        $announcement->users()->attach($user);
+        $announcement->postulants()->attach($user);
 
         return response()->json([ 'code' => 200, 'announcement' => $announcement]);
 
