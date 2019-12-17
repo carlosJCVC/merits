@@ -1,9 +1,11 @@
 @forelse($items as $requirement)
     <div class="container d-inline-block mb-2">
-        <label class="switch switch-3d switch-primary">
-            <input class="switch-input" type="checkbox" name="{{ $requirement->title }}" {{ ($requirement->requirementFile() != null && $requirement->requirementFile()->checked)? 'checked' : '' }}>
-            <span class="switch-slider"></span>
-        </label>
+        @if (!Auth::user()->hasRole('Postulante'))
+            <label class="switch switch-3d switch-primary">
+                <input class="switch-input" type="checkbox" name="{{ $requirement->title }}" {{ ($requirement->requirementFile() != null && $requirement->requirementFile()->checked)? 'checked' : '' }}>
+                <span class="switch-slider"></span>
+            </label>
+        @endif
         <span> {{ $requirement->description }}</span>
         <div class="pull-right">
 
