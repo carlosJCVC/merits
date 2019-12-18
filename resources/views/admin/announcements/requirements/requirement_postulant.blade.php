@@ -5,6 +5,15 @@
 @endsection
 
 @section('content')
+@php
+    $reqs = $announcement->requiredRequirements();
+    $requirements_required = true;
+    foreach ($reqs as $value) {
+        if ($value->requirementFile() == null) {
+            $requirements_required = false; 
+        }
+    }
+@endphp
     <div class="card" style="height: 100vh">
         <div class="card-header text-center title-panel">PANEL DE CONTROL</div>
         <div class="card-body" style="background-image: url('{{ asset('images/adinfondo.jpg') }}'); background-size: cover; background-repeat: no-repeat">
@@ -12,9 +21,13 @@
                 <div class="col-3">
                     <div class="card border-info shadow_card special-card">
                         <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                            <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">REQUISITOS INDISPENSABLES</a>
+                            <a class="nav-link active" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">REQUISITOS INDISPENSABLES</a>
+                            @if ($requirements_required)
                             <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">REQUISITOS GENERALES</a>
+                            @endif
+                            @if ($requirements_required)
                             <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">CONSULTAS</a>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -23,7 +36,7 @@
                         <div class="tab-content" id="v-pills-tabContent">
                             <div class="tab-pane fade show active" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
                                 @include('admin.announcements.requirements.partials.list', [ 'announcement' => $announcement,'items' => $announcement->requiredRequirements() ])
-                            </div>
+                            </div>                            
                             <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">
                                 @include('admin.announcements.requirements.partials.list', [ 'announcement' => $announcement, 'items' => $announcement->generalRequirements() ])
                             </div>
@@ -32,6 +45,11 @@
                             </div>
                         </div>
                     </div>
+                    @if ($requirements_required)
+                        <div class="text-center">
+                            <a data-toggle="pill" href="#v-pills-messages" class="btn btn-success">Siguiente</a>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
